@@ -1,0 +1,28 @@
+export default {
+  bottomColor:'#fafafa',
+  white: "#ffffff",
+  greyTab:'#DADADA',
+  tabColors:'#e20884',
+  details:'#0D88BC',
+  redTab:'#e20884',
+  ////ADDING UP
+  grey: "#8090A9",
+  Darkgrey: "#4a4a49",
+  Icongrey: "#757575",
+  midGrey: "#C6C6C6",
+  levelColor:'#8090A9',
+  blue: "#2C86DA",
+  darkBlue: "#728AB7",
+  yellow: "#64BCC0",
+  lightYellow: "#fbfcf8",
+  orange: "#D85027",
+  darkOrange: "#9E3B22",
+  textGrey: "#C4C4C4",
+ 
+  black: "#000000",
+  Passwrod: "pass",
+  user: "user",
+  check: "check",
+  last: "last",
+  listColor: "#f9f9f8",
+};
