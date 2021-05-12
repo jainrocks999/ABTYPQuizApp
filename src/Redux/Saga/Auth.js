@@ -171,7 +171,7 @@ function* OTPVarification(action) {
     yield put({
       type: 'OTP_Varification_Success',
       payload: response.user,
-    });
+    })
       Toast.show(response.msg);
       action.navigation.navigate('Quiz')
   } else {
