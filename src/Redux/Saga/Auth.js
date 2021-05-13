@@ -8,11 +8,8 @@ import Storage from '../../component/AsyncStorage';
 function* doLogin(action) {
   try{
   const data = new FormData();
-  data.append('email_id', action.email_id);
-  data.append('password', action.password);
   data.append('mobile',action.mobile)
   const response = yield call(Api.fetchDataByPOST, action.url, data);
-  console.log('i am testing',response);
   if (response.status==true) {
     yield put({
       type: 'User_Login_Success',
@@ -75,34 +72,6 @@ catch(error){
  console.log(error.message)
 }
 }
-////Change Password
-
-function* ChangePassword(action) {
-  try{
-  const data = new FormData();
-  data.append('userid',action.userid)
-  data.append('password', action.password);
-  data.append('newpassword', action.newpassword);
-  
-  const response = yield call(Api.fetchDataByPOST, action.url, data);
-  if (response.status==true) {
-    yield put({
-      type: 'Change_Password_Success',
-      payload: response.user,
-    });
-      Toast.show(response.msg);
-  } else {
-    Toast.show(response.msg);
-    yield put({
-      type: 'Change_Password_Error',
-    });
-  }
-}
-catch(error){
- Toast.show(error.message)
-}
-}
-
 ////Logout
 function* logout(action) {
   try{
@@ -160,7 +129,6 @@ function* OTPVarification(action) {
   data.append('email_id',action.email_id)
   data.append('otp',action.otp)
   const response = yield call(Api.fetchDataByPOST, action.url, data);
-  console.log('testing i am----------------',response);
   if (response.status==true) {
     yield put({
       type: 'OTP_Varification_Success',
@@ -179,37 +147,11 @@ catch(error){
  Toast.show(error.message)
      }
 }
-/////ForgetPassword
-function* forgetPassword(action) {
-  console.log('testing here ',action);
-  try{
-  const data = new FormData();
-  data.append('email_id',action.email_id)
-  const response = yield call(Api.fetchDataByPOST, action.url, data);
-  console.log('testing i am----------------',response);
-  if (response.status==true) {
-    yield put({
-      type: 'Forgot_Password_Success',
-      payload: response.user,
-    })
-      Toast.show(response.msg);
-  } else {
-    Toast.show(response.msg);
-    yield put({
-      type: 'Forgot_Password_Error',
-    });
-  }
-}
-catch(error){
- Toast.show(error.message)
-     }
-}
+
 export default function* authSaga() {
   yield takeEvery('User_Login_Request', doLogin);
   yield takeEvery('User_Register_Request', doRegister);
-  yield takeEvery('Change_Password_Request', ChangePassword);
   yield takeEvery('User_Logout_Request', logout);
   yield takeEvery('Mobile_Varification_Request',mobileVarification)
   yield takeEvery('OTP_Varification_Request',OTPVarification)
-  yield takeEvery('Forget_Password_Request',forgetPassword)
 }

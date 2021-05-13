@@ -10,6 +10,7 @@ import Storage from '../../../component/AsyncStorage';
 import Loader from '../../../component/loader';
 import styles from './style';
 import OTPTextInput  from 'react-native-otp-textinput';
+import StatusBar from '../../../component/StatusBar';
 
 const OtpVarification=()=>{
 
@@ -71,6 +72,7 @@ const OtpVarification=()=>{
             </View>
          </View>
          </ScrollView>
+         <StatusBar/>
         </View>
        )
 }

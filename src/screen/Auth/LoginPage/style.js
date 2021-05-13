@@ -8,7 +8,7 @@ export default StyleSheet.create({
     },
     second:{
         padding:20,
-        marginTop:10
+        marginTop:100
     },
      main:{
          width:'100%',

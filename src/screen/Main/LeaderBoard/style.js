@@ -7,7 +7,7 @@ export default StyleSheet.create({
         backgroundColor:'white'
     },
     second:{
-        padding:10,
+        paddingHorizontal:10,
         flex:1
     },
     main:{
@@ -23,5 +23,16 @@ export default StyleSheet.create({
         color:'white',
         fontSize:17,
         fontFamily:'Poppins-Bold'
+    },
+    card:{shadowColor:'black',
+        shadowOpacity:0.25,
+        shadowRadius:4,
+        shadowOffset:{height:2,width:0},
+        elevation:5,
+        borderRadius:10,
+        backgroundColor:'white',
+        height:60,
+        marginTop:20,
+        padding:10
     }
 })

@@ -9,6 +9,7 @@ import StatusBar from '../../../component/StatusBar';
 import BottomTab from '../../../component/StoreButtomTab';
 import { useDispatch,useSelector } from 'react-redux';
 import Loader from '../../../component/loader';
+import Header from '../../../component/header';
 const Login=()=>{
     const navigation=useNavigation()
     const dispatch=useDispatch()
@@ -33,8 +34,6 @@ const validateUser=()=>{
         dispatch({
           type: 'User_Login_Request',
           url: 'login',
-          email_id,
-          password,
           mobile,
           navigation: navigation,
         })
@@ -44,31 +43,13 @@ const validateUser=()=>{
         <View style={styles.container}>
          {isFetching?<Loader/>:null} 
           <ScrollView>
-           <View style={styles.main}>
-           <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
-            <Image style={styles.image} source={require('../../../assets/Images/drawer1.png')}/>
-            </TouchableOpacity>
-            <Text style={styles.title}>Login </Text>
-            <View></View>
-           </View>
+          <Header
+          title='Login'
+          />
            <View style={{alignItems:'center',marginTop:20}}>
                <Image style={{width:100,height:100}} source={require('../../../assets/Images/logo1.jpg')}/>
            </View>
-           <View style={styles.second}>
-            <View style={{justifyContent:'flex-start',width:'100%'}}>
-            <Text style={{fontFamily:'Poppins-Medium'}}>Email</Text>
-            </View>
-           <TextInput
-            placeholder='Enter Email'
-            onChangeText={(text)=>setEmail(text)}
-            />
-             <View style={{justifyContent:'flex-start',width:'100%',marginTop:5}}>
-            <Text style={{fontFamily:'Poppins-Medium'}}>Password</Text>
-            </View>
-           <TextInput
-            placeholder='Enter Password'
-            onChangeText={(text)=>setPassword(text)}
-            />
+           <View style={styles.second}> 
               <View style={{justifyContent:'flex-start',width:'100%',marginTop:5}}>
             <Text style={{fontFamily:'Poppins-Medium'}}>Mobile</Text>
             </View>
@@ -82,9 +63,7 @@ const validateUser=()=>{
             title='Login'
             onPress={()=>validateUser()}
             /> 
-            <View style={{width:'100%',alignItems:'flex-end',marginTop:10}}>
-            <Text onPress={()=>navigation.navigate('Forget')} style={{fontFamily:'Poppins-Bold'}}>Forget Password?</Text>
-            </View>
+          
             </View>
          </View>
          </ScrollView>

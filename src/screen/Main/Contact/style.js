@@ -1,6 +1,4 @@
 import { StyleSheet } from 'react-native';
-
-
 export default StyleSheet.create({
     container:{
         flex:1,
@@ -33,5 +31,24 @@ export default StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         flex:1
+    },
+    view:{
+        flexDirection:'row',
+        marginTop:10
+    },
+    text:{
+        fontFamily:'Poppins-Medium',
+        marginLeft:6
+    },
+    card:{shadowColor:'black',
+    shadowOpacity:0.25,
+    shadowRadius:8,
+    shadowOffset:{height:2,width:0},
+    elevation:5,
+    borderRadius:10,
+    backgroundColor:'white',
+    height:300,
+    margin:20,
+    padding:10
     }
 })

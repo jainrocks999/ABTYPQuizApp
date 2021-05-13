@@ -5,6 +5,7 @@ import  {Popup}  from "../../../component/quizComponent/Popup";
 import BottomTab from '../../../component/StoreButtomTab';
 import styles from './style';
 import StatusBar from '../../../component/StatusBar';
+import Header from "../../../component/header";
 class Quiz extends React.Component {
   constructor(props){
     super(props)
@@ -18,8 +19,32 @@ class Quiz extends React.Component {
       data:[],
       disable:false,
       color:'',
-      questions:questions
+      questions:questions,
+      timer: null,
+      counter: 60,
     };
+  }
+  componentDidMount() {
+    const {counter} = this.state
+        let timer = setInterval(this.tick, 1000);
+    this.setState({timer});
+    
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.state.timer);
+  }
+
+  tick =() => {
+    const {counter} = this.state
+    if (counter == 0) {
+        clearInterval(this.state.timer);
+    } else {
+        this.setState({
+            counter: this.state.counter - 1
+          });
+    }  
+   
   }
   answer = (correct,index) => {
   if(correct){
@@ -58,12 +83,27 @@ class Quiz extends React.Component {
         return nextState;
       },
       () => {
-        setTimeout(() => this.nextQuestion(), 600);
+        setTimeout(() =>this.state.counter!=0? this.nextQuestion():this.alertFunction(), 600);
       }
     );
   }
    
   };
+alertFunction=()=>{
+  Alert.alert(
+    "Quiz Result",
+    "Correct answer  "+this.state.correctCount,
+    [
+      {
+        text: "Cancel",
+        onPress: () => console.log("Cancel Pressed"),
+        style: "cancel"
+      },
+      { text: "OK", onPress: () => console.log("OK Pressed") }
+    ],
+    { cancelable: false }
+  );
+}
 
   nextQuestion = () => {
     try {
@@ -97,19 +137,7 @@ class Quiz extends React.Component {
         });
        }
        else{
-        Alert.alert(
-          "Quiz Result",
-          "Correct answer  "+this.state.correctCount,
-          [
-            {
-              text: "Cancel",
-              onPress: () => console.log("Cancel Pressed"),
-              style: "cancel"
-            },
-            { text: "OK", onPress: () => console.log("OK Pressed") }
-          ],
-          { cancelable: false }
-        );
+       this.alertFunction()
        }
     };
     previous = () => {
@@ -131,13 +159,9 @@ class Quiz extends React.Component {
     return (
      <View style={{flex:1}}>
       <View style={{flex:1}}>
-          <View style={styles.main}>
-            <TouchableOpacity onPress={()=>this.props.navigation.toggleDrawer()}>
-            <Image style={styles.image} source={require('../../../assets/Images/drawer1.png')}/>
-            </TouchableOpacity>
-            <Text style={styles.title}>Quiz Screen </Text>
-            <View></View>
-           </View>
+          <Header
+          title='Quiz Screen'
+          />
         <ScrollView>
         <View style={styles.view}>
           <View style={styles.view1}>
@@ -148,9 +172,9 @@ class Quiz extends React.Component {
           </View>
           <View style={{alignSelf:'flex-end'}}>
           <Text style={[styles.text]}>
-          Correct </Text>
+          Timer </Text>
           <Text style={[{textAlign:'center'},styles.text]}>
-           {this.state.correctCount}
+           {this.state.counter}
           </Text> 
           </View>
          
@@ -172,14 +196,14 @@ class Quiz extends React.Component {
             ))}  
             </ButtonContainer>
           </View>
-          <Popup
+          {/* <Popup
           correct={this.state.answerCorrect}
           visible={this.state.answered}
-        />
+        /> */}
         </SafeAreaView> 
         </ScrollView>
       </View>
-     <StatusBar/>
+       <StatusBar/>
       <BottomTab/>
       </View>
     );

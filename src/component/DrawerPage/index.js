@@ -109,19 +109,6 @@ export default function DrawerContent(props) {
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => {
-                        navigation.navigate('Change')
-                    }}>
-                    <View style={[styles.drawer]}>
-                        <View style={{ flexDirection: 'row' }}>
-                        <View style={styles.iconView}>
-                                <Image style={styles.imageicon} source={require('../../assets/Images/leader.png')}/>
-                            </View>
-                            <Text style={styles.text}> Change Password</Text>
-                        </View>
-                    </View>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={() => {
                         navigation.navigate('Leader')
                     }}>
                     <View style={[styles.drawer]}>

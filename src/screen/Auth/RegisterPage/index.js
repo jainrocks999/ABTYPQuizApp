@@ -11,6 +11,8 @@ import ModalDropdown from 'react-native-modal-dropdown';
 import StatusBar from '../../../component/StatusBar';
 import { useDispatch,useSelector } from 'react-redux';
 import Loader from '../../../component/loader';
+import Header from '../../../component/header';
+import DatePicker from 'react-native-datepicker';
 
 const data=['Others','Male','Femail']
 const data1=['Andhra Pradesh','Arunachal Pradesh',
@@ -35,6 +37,7 @@ const RegisterPage=()=>{
     const [pincode,setPincode]=useState('')
     const [password,setPassword]=useState('')
     const [confirm,setConfirm]=useState('')
+    const [date, setDate] = useState('09-10-2020');
 
 const userRegister=()=>{
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -105,13 +108,9 @@ const userRegister=()=>{
     return(
         <View style={styles.container}>
             {isFetching?<Loader/>:null}
-          <View style={styles.main}>
-          <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
-            <Image style={styles.image} source={require('../../../assets/Images/drawer1.png')}/>
-            </TouchableOpacity>
-            <Text style={styles.title}>Registration </Text>
-            <View></View>
-           </View>
+            <Header
+            title='Registration'
+            />
            <ScrollView>
 
            <View style={{alignItems:'center',marginTop:20}}>
@@ -178,7 +177,35 @@ const userRegister=()=>{
             <TextInput
             placeholder='Enter Date Of Birth'
             onChangeText={(text)=>setDob(text)}
+            keyboardType='number-pad'
             />
+             {/* <View style={styles.drop}>
+             <DatePicker
+            date={date} // Initial date from state
+            mode="date" // The enum of date, datetime and time
+            placeholder="select date"
+            format="DD-MM-YYYY"
+            minDate="01-01-1990"
+            maxDate="01-01-2021"
+            confirmBtnText="Confirm"
+            cancelBtnText="Cancel"
+            customStyles={{
+            dateIcon: {
+              //display: 'none',
+              position: 'absolute',
+              left: 0,
+              top: 4,
+              marginLeft: 0,
+            },
+            dateInput: {
+              marginLeft: 36,
+            },
+          }}
+          onDateChange={(date) => {
+            setDate(date);
+          }}
+        />
+            </View> */}
             <View style={styles.view1}>
             <Text style={{fontFamily:'Poppins-Medium'}}>Area</Text>
             </View>
@@ -218,6 +245,7 @@ const userRegister=()=>{
             <TextInput
             placeholder='Enter Pincode Number'
             onChangeText={(text)=>setPincode(text)}
+            keyboardType='number-pad'
             />
           
             <View style={{width:'100%',marginTop:30}}>
@@ -227,7 +255,7 @@ const userRegister=()=>{
             /> 
             </View>
             </View>
-         </ScrollView>
+           </ScrollView>
          <StatusBar/>
             <BottomTab/>
        </View>

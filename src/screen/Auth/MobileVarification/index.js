@@ -9,6 +9,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import Storage from '../../../component/AsyncStorage';
 import Loader from '../../../component/loader';
 import styles from './style';
+import StatusBar from '../../../component/StatusBar';
 
 const MobileVarification=()=>{
     const [mobile,setMobile]=useState('')
@@ -61,6 +62,7 @@ const MobileVarification=()=>{
             </View>
          </View>
          </ScrollView>
+         <StatusBar/>
         </View>
        )
 }

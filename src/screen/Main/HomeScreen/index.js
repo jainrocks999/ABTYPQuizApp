@@ -4,17 +4,14 @@ import BottomTab from '../../../component/StoreButtomTab';
 import styles from './styles';
 import StatusBar from '../../../component/StatusBar';
 import { useNavigation } from '@react-navigation/native';
+import Header from '../../../component/header';
 const Home=()=>{
   const navigation=useNavigation()
     return(
          <View style={styles.container}>
-            <View style={styles.main}>
-            <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
-            <Image style={styles.image} source={require('../../../assets/Images/drawer1.png')}/>
-            </TouchableOpacity>
-            <Text style={styles.home}>Home </Text>
-            <View></View>
-           </View>
+           <Header
+           title='Home'
+           />
          <View style={styles.second}>
           <TouchableOpacity style={styles.card}>
             <Text style={styles.text}>About App</Text>

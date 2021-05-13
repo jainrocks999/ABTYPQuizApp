@@ -2,11 +2,9 @@ initialstate = {
   isFetching: false,
   UserDetails: [],
   RegisterDetails: [],
-  ChangePassword:[],
   Logout:[],
   Mobile:[],
   OTP:[],
-  Forget:[]
 };
 export default (state = initialstate, action) => {
   switch (action.type) {
@@ -22,13 +20,6 @@ export default (state = initialstate, action) => {
     case 'User_Register_Success':
       return {...state, isFetching: false, RegisterDetails: action.payload};
     case 'User_Register_Error':
-      return {...state, isFetching: false};
-
-    case 'Change_Password_Request':
-      return {...state, isFetching: true};
-    case 'Change_Password_Success':
-      return {...state, isFetching: false, ChangePassword: action.payload};
-    case 'Change_Password_Error':
       return {...state, isFetching: false};
       
     case 'User_Logout_Request':
@@ -50,13 +41,6 @@ export default (state = initialstate, action) => {
     case 'OTP_Varification_Success':
         return {...state, isFetching: false, OTP: action.payload};
     case 'OTP_Varification_Error':
-        return {...state, isFetching: false};
-
-    case 'Forgot_Password_Request':
-        return {...state, isFetching: true};
-    case 'Forgot_Password_Success':
-        return {...state, isFetching: false,};
-    case 'Forgot_Password_Error':
         return {...state, isFetching: false};
 
     default:

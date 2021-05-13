@@ -10,7 +10,6 @@ import Book from '../../screen/Main/E-Book';
 import LeaderBoard from '../../screen/Main/LeaderBoard';
 import RegisterPage from '../../screen/Auth/RegisterPage';
 import LoginPage from "../../screen/Auth/LoginPage";
-import ChangePassword from '../../screen/Auth/ChangePassword';
 
 const Drawer = createDrawerNavigator();
 function MyDrawer() {
@@ -25,7 +24,6 @@ function MyDrawer() {
        <Drawer.Screen name='Book' component={Book}/>
        <Drawer.Screen name='Leader' component={LeaderBoard}/>
        <Drawer.Screen name='Register' component={RegisterPage}/>
-       <Drawer.Screen name='Change' component={ChangePassword}/>
     </Drawer.Navigator>
   );
 
