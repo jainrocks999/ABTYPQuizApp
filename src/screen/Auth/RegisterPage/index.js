@@ -10,6 +10,7 @@ import BottomTab from '../../../component/StoreButtomTab';
 import ModalDropdown from 'react-native-modal-dropdown';
 import StatusBar from '../../../component/StatusBar';
 import { useDispatch,useSelector } from 'react-redux';
+import Loader from '../../../component/loader';
 
 const data=['Others','Male','Femail']
 const data1=['Andhra Pradesh','Arunachal Pradesh',
@@ -103,6 +104,7 @@ const userRegister=()=>{
 
     return(
         <View style={styles.container}>
+            {isFetching?<Loader/>:null}
           <View style={styles.main}>
           <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
             <Image style={styles.image} source={require('../../../assets/Images/drawer1.png')}/>

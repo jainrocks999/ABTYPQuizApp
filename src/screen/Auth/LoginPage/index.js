@@ -8,6 +8,7 @@ import Toast from 'react-native-simple-toast';
 import StatusBar from '../../../component/StatusBar';
 import BottomTab from '../../../component/StoreButtomTab';
 import { useDispatch,useSelector } from 'react-redux';
+import Loader from '../../../component/loader';
 const Login=()=>{
     const navigation=useNavigation()
     const dispatch=useDispatch()
@@ -41,6 +42,7 @@ const validateUser=()=>{
 }
     return(
         <View style={styles.container}>
+         {isFetching?<Loader/>:null} 
           <ScrollView>
            <View style={styles.main}>
            <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
@@ -73,6 +75,7 @@ const validateUser=()=>{
            <TextInput
             placeholder='Enter Mobile Number'
             onChangeText={(text)=>setMobile(text)}
+            keyboardType='number-pad'
             />
             <View style={{width:'100%',marginTop:30,marginBottom:50}}>
             <CustomButton
@@ -80,7 +83,7 @@ const validateUser=()=>{
             onPress={()=>validateUser()}
             /> 
             <View style={{width:'100%',alignItems:'flex-end',marginTop:10}}>
-            <Text onPress={()=>navigation.navigate('Mobile')} style={{fontFamily:'Poppins-Bold'}}>Forget Password?</Text>
+            <Text onPress={()=>navigation.navigate('Forget')} style={{fontFamily:'Poppins-Bold'}}>Forget Password?</Text>
             </View>
             </View>
          </View>

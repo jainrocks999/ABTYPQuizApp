@@ -1,12 +1,12 @@
 import React,{useState} from 'react';
-import { View,Text,Image,TouchableOpacity } from 'react-native';
+import { View,Text,Image,TouchableOpacity ,ScrollView} from 'react-native';
 import CustomButton from '../../../component/button1';
 import TextInput from '../../../component/TextInput';
 import { useSelector,useDispatch } from 'react-redux';
 import Toast from 'react-native-simple-toast';
 import { useNavigation } from '@react-navigation/native';
 import BottomTab from '../../../component/StoreButtomTab';
-//import Loader from '../../../component/Loader';
+import Loader from '../../../component/loader';
 import styles from './styles';
 import AsyncStorage from '@react-native-community/async-storage';
 import Storage from '../../../component/AsyncStorage';
@@ -44,7 +44,8 @@ const ChangePassword=()=>{
       }
     return(
         <View style={styles.container}>
-         {/* {isFetching?<Loader/>:null} */}
+         {isFetching?<Loader/>:null}
+         <ScrollView>
          <View style={styles.main1}>
            <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
             <Image style={styles.image} source={require('../../../assets/Images/drawer1.png')}/>
@@ -84,6 +85,7 @@ const ChangePassword=()=>{
             />
             </View>
          </View>
+         </ScrollView>
          <BottomTab/>
         </View>
        )

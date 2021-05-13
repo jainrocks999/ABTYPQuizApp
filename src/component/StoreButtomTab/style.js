@@ -8,7 +8,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     opacity: 10,
-    paddingVertical:5
+    paddingVertical:3
   },
 
   itemSeperator: {
@@ -18,8 +18,8 @@ export default StyleSheet.create({
   },
   bottomTab: {
    tintColor: 'white',
-    height: 30,
-    width: 30,
+    height: 25,
+    width: 25,
   },
   bottomTab1: {
     height: 40,

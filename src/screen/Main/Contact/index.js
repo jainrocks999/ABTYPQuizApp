@@ -18,7 +18,7 @@ const Contact=()=>{
             <View></View>
            </View>
          <View style={styles.second}>
-         <View style={{justifyContent:'center',alignItems:'center',flex:1}}>
+         <View style={styles.main1}>
            <Text>Under working</Text>
            </View>
          </View>

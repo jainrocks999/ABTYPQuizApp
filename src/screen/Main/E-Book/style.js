@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet ,Dimensions} from 'react-native';
 
 
 export default StyleSheet.create({
@@ -7,7 +7,7 @@ export default StyleSheet.create({
         backgroundColor:'white'
     },
     second:{
-        padding:10,
+       
         flex:1
     },
     main:{
@@ -28,5 +28,15 @@ export default StyleSheet.create({
         color:'white',
         fontSize:17,
         fontFamily:'Poppins-Bold'
+    },
+    pdf: {
+        flex:1,
+        width:Dimensions.get('window').width,
+        height:'100%'
+    },
+    main1:{
+        justifyContent:'center',
+        alignItems:'center',
+        flex:1
     }
 })

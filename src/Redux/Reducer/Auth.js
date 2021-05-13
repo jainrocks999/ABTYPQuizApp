@@ -5,7 +5,8 @@ initialstate = {
   ChangePassword:[],
   Logout:[],
   Mobile:[],
-  OTP:[]
+  OTP:[],
+  Forget:[]
 };
 export default (state = initialstate, action) => {
   switch (action.type) {
@@ -50,6 +51,14 @@ export default (state = initialstate, action) => {
         return {...state, isFetching: false, OTP: action.payload};
     case 'OTP_Varification_Error':
         return {...state, isFetching: false};
+
+    case 'Forgot_Password_Request':
+        return {...state, isFetching: true};
+    case 'Forgot_Password_Success':
+        return {...state, isFetching: false,};
+    case 'Forgot_Password_Error':
+        return {...state, isFetching: false};
+
     default:
       return state;
   }

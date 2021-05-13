@@ -28,5 +28,10 @@ export default StyleSheet.create({
         color:'white',
         fontSize:17,
         fontWeight:'700'
+    },
+    main1:{
+        justifyContent:'center',
+        alignItems:'center',
+        flex:1
     }
 })

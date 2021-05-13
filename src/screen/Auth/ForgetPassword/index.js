@@ -1,36 +1,38 @@
 import React,{useState} from 'react';
-import { View,Text,Image,TouchableOpacity } from 'react-native';
+import { View,Text,Image,TouchableOpacity, ScrollView } from 'react-native';
 import CustomButton from '../../../component/button1';
 import TextInput from '../../../component/TextInput';
-// import {Input} from 'react-native-elements';
 import { useSelector,useDispatch } from 'react-redux';
 import Toast from 'react-native-simple-toast';
 import { useNavigation } from '@react-navigation/native';
-//import Loader from '../../../component/Loader';
+import Loader from '../../../component/loader';
 import styles from './style';
 
 const forgot=()=>{
-    const [mobile,setMobile]=useState('')
+    const [email_id,setEmail]=useState('')
     const navigation=useNavigation();
     const dispatch=useDispatch();
-    const isFetching=useSelector((state)=>state.isFetching)
+    const isFetching=useSelector((state)=>state.isFetching)  
 
-      let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
       const getForgot=()=>{
-        if(mobile==''){
-          Toast.show('Please Enter Mobile Number')
-        }
+        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+         if(reg.test(email_id)==false){
+        Toast.show('Please Enter Valid Email')
+        return false
+         }
         else{
           dispatch({
-            type: 'User_Forgot_Password_Request',
-            url: 'reset_password',
-            mobile,
+            type: 'Forget_Password_Request',
+            url: 'forgotpassword',
+            email_id,
+            navigation:navigation
           });
         }
       }
     return(
         <View style={styles.container}>
-         {/* {isFetching?<Loader/>:null} */}
+         {isFetching?<Loader/>:null}
+         <ScrollView>
          <View style={styles.main1}>
            <TouchableOpacity onPress={() => navigation.goBack()}>
             <Image style={styles.image} source={require('../../../assets/Images/arrow1.png')}/>
@@ -45,15 +47,16 @@ const forgot=()=>{
             </View>
            <TextInput
             placeholder='Enter Email'
-            onChangeText={(text)=>setMobile(text)}
+            onChangeText={(text)=>setEmail(text)}
             />
             <View style={{width:'100%',marginTop:30,marginBottom:50}}>
             <CustomButton
             title='Send'
-           // onPress={()=>validateUser()}
+            onPress={()=>getForgot()}
             /> 
             </View>
          </View>
+         </ScrollView>
         </View>
        )
 }
