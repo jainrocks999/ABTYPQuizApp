@@ -5,26 +5,27 @@ import styles from './styles';
 import StatusBar from '../../../component/StatusBar';
 import { useNavigation } from '@react-navigation/native';
 import Header from '../../../component/header';
+import Lang from '../../../component/language';
 const Home=()=>{
   const navigation=useNavigation()
     return(
          <View style={styles.container}>
            <Header
-           title='Home'
+           title={Lang.Home}
            />
          <View style={styles.second}>
           <TouchableOpacity style={styles.card}>
-            <Text style={styles.text}>About App</Text>
+            <Text style={styles.text}>{Lang.AboutApp}</Text>
           </TouchableOpacity>
           <TouchableOpacity
           onPress={()=>navigation.navigate('Book')}
            style={[styles.card,{marginTop:10}]}>
-            <Text style={styles.text}>E-Book</Text>
+            <Text style={styles.text}>{Lang.Ebook}</Text>
           </TouchableOpacity>
           <TouchableOpacity
           onPress={()=>navigation.navigate('Quiz')}
            style={[styles.card,{marginTop:10}]}>
-            <Text style={styles.text}>Quiz Screen</Text>
+            <Text style={styles.text}>{Lang.QuizScreen}</Text>
           </TouchableOpacity>
          </View>
          <StatusBar/>

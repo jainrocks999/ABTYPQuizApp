@@ -13,6 +13,7 @@ import { useDispatch,useSelector } from 'react-redux';
 import Loader from '../../../component/loader';
 import Header from '../../../component/header';
 import DatePicker from 'react-native-datepicker';
+import Lang from '../../../component/language';
 
 const data=['Others','Male','Femail']
 const data1=['Andhra Pradesh','Arunachal Pradesh',
@@ -109,7 +110,7 @@ const userRegister=()=>{
         <View style={styles.container}>
             {isFetching?<Loader/>:null}
             <Header
-            title='Registration'
+            title={Lang.Registration}
             />
            <ScrollView>
 
@@ -118,35 +119,35 @@ const userRegister=()=>{
            </View>
             <View style={styles.second}>
             <View style={styles.view}>
-            <Text style={{fontFamily:'Poppins-Medium'}}>First Name</Text>
+            <Text style={{fontFamily:'KRDEV011'}}>{Lang.FirstName}</Text>
             </View>
             <TextInput
             placeholder='Enter First Name'
             onChangeText={(text)=>setFirstName(text)}
             />
              <View style={styles.view1}>
-            <Text style={{fontFamily:'Poppins-Medium'}}>Last Name</Text>
+            <Text style={{fontFamily:'KRDEV011'}}>{Lang.LastName}</Text>
             </View>
             <TextInput
             placeholder='Enter Last Name'
             onChangeText={(text)=>setLastName(text)}
             />
             <View style={styles.view1}>
-            <Text style={{fontFamily:'Poppins-Medium'}}>Email</Text>
+            <Text style={{fontFamily:'KRDEV011'}}>{Lang.email}</Text>
             </View>
             <TextInput
             placeholder='Enter Email'
             onChangeText={(text)=>setEmail(text)}
             />
             <View style={styles.view1}>
-            <Text style={{fontFamily:'Poppins-Medium'}}>Mobile Number</Text>
+            <Text style={{fontFamily:'KRDEV011'}}>{Lang.MobbileNumber}</Text>
             </View>
             <TextInput
             placeholder='Enter Mobile Number'
             onChangeText={(text)=>setMobile(text)}
             />
             <View style={styles.view1}>
-            <Text style={{fontFamily:'Poppins-Medium'}}>Gender</Text>
+            <Text style={{fontFamily:'KRDEV011'}}>{Lang.Gender}</Text>
             </View>
             <View style={styles.drop}>
             <ModalDropdown
@@ -157,22 +158,22 @@ const userRegister=()=>{
             onSelect={(text)=>setGender(text)}
              options={data}/>
             </View>
-            <View style={styles.view1}>
-            <Text style={{fontFamily:'Poppins-Medium'}}>Password</Text>
+            {/* <View style={styles.view1}>
+            <Text style={{fontFamily:'KRDEV011'}}>Password</Text>
             </View>
             <TextInput
             placeholder='Enter Password'
             onChangeText={(text)=>setPassword(text)}
             />
             <View style={styles.view1}>
-            <Text style={{fontFamily:'Poppins-Medium'}}>Confirm Password</Text>
+            <Text style={{fontFamily:'KRDEV011'}}>Confirm Password</Text>
             </View>
             <TextInput
             placeholder='Enter Confirm Password'
             onChangeText={(text)=>setConfirm(text)}
-            />
+            /> */}
             <View style={styles.view1}>
-            <Text style={{fontFamily:'Poppins-Medium'}}>Date Of Birth</Text>
+            <Text style={{fontFamily:'KRDEV011'}}>{Lang.DateOfBirth}</Text>
             </View>
             <TextInput
             placeholder='Enter Date Of Birth'
@@ -207,28 +208,28 @@ const userRegister=()=>{
         />
             </View> */}
             <View style={styles.view1}>
-            <Text style={{fontFamily:'Poppins-Medium'}}>Area</Text>
+            <Text style={{fontFamily:'KRDEV011'}}>{Lang.area}</Text>
             </View>
             <TextInput
             placeholder='Enter Area'
             onChangeText={(text)=>setArea(text)}
             />
             <View style={styles.view1}>
-            <Text style={{fontFamily:'Poppins-Medium'}}>Address</Text>
+            <Text style={{fontFamily:'KRDEV011'}}>{Lang.Address}</Text>
             </View>
             <TextInput
             placeholder='Enter Address'
             onChangeText={(text)=>setAddress(text)}
             />
             <View style={styles.view1}>
-            <Text style={{fontFamily:'Poppins-Medium'}}>City</Text>
+            <Text style={{fontFamily:'KRDEV011'}}>{Lang.City}</Text>
             </View>
             <TextInput
             placeholder='Enter City Name'
             onChangeText={(text)=>setCity(text)}
             />
             <View style={styles.view1}>
-            <Text style={{fontFamily:'Poppins-Medium'}}>State</Text>
+            <Text style={{fontFamily:'KRDEV011'}}>{Lang.State}</Text>
             </View>
             <View style={styles.drop}>
             <ModalDropdown
@@ -240,7 +241,7 @@ const userRegister=()=>{
              options={data1}/>
             </View>
             <View style={styles.view1}>
-            <Text style={{fontFamily:'Poppins-Medium'}}>Pincode</Text>
+            <Text style={{fontFamily:'KRDEV011'}}>{Lang.Pincode}</Text>
             </View>
             <TextInput
             placeholder='Enter Pincode Number'
@@ -250,7 +251,7 @@ const userRegister=()=>{
           
             <View style={{width:'100%',marginTop:30}}>
             <CustomButton
-            title='Register'
+            title={Lang.Registration}
             onPress={()=>userRegister()}
             /> 
             </View>

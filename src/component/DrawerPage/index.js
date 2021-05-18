@@ -5,6 +5,7 @@ import {
 } from '@react-navigation/drawer';
 import AsyncStorage from "@react-native-community/async-storage";
 import { useNavigation } from '@react-navigation/native';
+import lang from '../../component/language';
 import {
     Avatar,
     Title,
@@ -77,7 +78,7 @@ export default function DrawerContent(props) {
                     <Image style={{width:100,height:100}} source={require('../../assets/Images/logo1.jpg')}/>
                    {!Email?
                    <View style={styles.profile}>
-                    <Text style={styles.title}>{`Register To View\nProfile`}</Text>
+                    <Text style={styles.title}>{lang.RegisterToProfileView}</Text>
                     </View>:
                     <View style={styles.profile}>
                         <Title style={styles.title}>{Name}</Title>
@@ -93,7 +94,7 @@ export default function DrawerContent(props) {
                             <View style={styles.iconView}>
                                 <Image style={styles.imageicon} source={require('../../assets/Images/login.jpg')}/>
                             </View>
-                            <Text style={styles.text}> Login</Text>
+                            <Text style={styles.text}>{lang.Login}</Text>
                         </View>
                     </View>
                 </TouchableOpacity>
@@ -106,7 +107,7 @@ export default function DrawerContent(props) {
                         <View style={styles.iconView}>
                                 <Image style={styles.imageicon} source={require('../../assets/Images/register.png')}/>
                             </View>
-                            <Text style={styles.text}> Registration</Text>
+                            <Text style={styles.text}> {lang.Registration}</Text>
                         </View>
                     </View>
                 </TouchableOpacity>
@@ -119,7 +120,7 @@ export default function DrawerContent(props) {
                         <View style={styles.iconView}>
                                 <Image style={styles.imageicon} source={require('../../assets/Images/leader.png')}/>
                             </View>
-                            <Text style={styles.text}> Leader Board</Text>
+                            <Text style={styles.text}>{lang.LeaderBoard}</Text>
                         </View>
                     </View>
                 </TouchableOpacity>
@@ -133,7 +134,7 @@ export default function DrawerContent(props) {
                         <View style={styles.iconView}>
                                 <Image style={styles.imageicon} source={require('../../assets/Images/contact.png')}/>
                             </View>
-                            <Text style={styles.text}> Contact us</Text>
+                            <Text style={styles.text}>{lang.ContactUs}</Text>
                         </View>
                     </View>
                 </TouchableOpacity>
@@ -146,7 +147,7 @@ export default function DrawerContent(props) {
                         <View style={styles.iconView}>
                                 <Image style={styles.imageicon} source={require('../../assets/Images/book.png')}/>
                             </View>
-                            <Text style={styles.text}>E-Book</Text>
+                            <Text style={styles.text}>{lang.Ebook}</Text>
                         </View>
                     </View>
                 </TouchableOpacity>
@@ -162,7 +163,7 @@ export default function DrawerContent(props) {
                         <View style={styles.iconView}>
                                 <Image style={styles.imageicon} source={require('../../assets/Images/logout.png')}/>
                             </View>
-                            <Text style={styles.text}> Logout</Text>
+                            <Text style={styles.text}>{lang.Logout}</Text>
                         </View>
                     </TouchableOpacity>
                 </TouchableOpacity>:

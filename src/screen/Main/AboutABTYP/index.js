@@ -5,12 +5,13 @@ import styles from './style';
 import StatusBar from '../../../component/StatusBar';
 import { useNavigation } from '@react-navigation/native';
 import Header from '../../../component/header';
+import Lang from '../../../component/language';
 const About=()=>{
   const navigation=useNavigation()
     return(
          <View style={styles.container}>
            <Header
-           title='ABTYP'
+           title={Lang.AboutApp}
            />
          <View style={styles.second}>
          <View style={styles.main1}>

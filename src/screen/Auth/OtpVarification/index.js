@@ -50,7 +50,7 @@ const OtpVarification=()=>{
            </View>
            <View style={styles.second}>
             <View style={{justifyContent:'flex-start',width:'100%'}}>
-            <Text style={{fontFamily:'Poppins-Medium'}}>Enter OTP Here</Text>
+            <Text style={{fontFamily:'KRDEV011'}}>Enter OTP Here</Text>
             </View>
             <OTPTextInput
               handleTextChange={(code)=>setOtp(code)}
