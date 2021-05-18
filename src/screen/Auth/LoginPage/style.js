@@ -27,6 +27,6 @@ export default StyleSheet.create({
     title:{
         color:'white',
         fontSize:17,
-        fontFamily:'Poppins-Bold'
+        fontFamily:'KRDEV011'
     }
 })

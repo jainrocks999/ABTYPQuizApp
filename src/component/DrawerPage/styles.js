@@ -5,13 +5,14 @@ export default StyleSheet.create({
         flex: 1,
     },
     title: {
-        fontFamily:'Poppins-Bold',
+        fontFamily:'Krdev016',
         fontSize:16,
+        width:'80%',
         color:'#000'
     },
     caption: {
         fontSize: 14,
-        fontFamily:'Poppins-SemiBold',
+        fontFamily:'Krdev016',
         color:'#000'
     },
     drawers: {
@@ -39,7 +40,7 @@ export default StyleSheet.create({
     },
     text: {
         marginLeft: 10,
-        fontFamily:'Poppins-SemiBold',
+        fontFamily:'KRDEV011.ttf',
         fontSize:16
     },
     icon: {
@@ -62,7 +63,7 @@ export default StyleSheet.create({
     text1:{ 
         color: 'white', 
         fontSize: 16 ,
-        fontFamily:'GothicA1-SemiBold'
+        fontFamily:'Krdev016'
     },
     image:{ 
         height: 30, 

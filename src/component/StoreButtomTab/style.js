@@ -35,7 +35,7 @@ export default StyleSheet.create({
   text:{
     fontSize: 12,
     color:'white',
-    fontFamily:'Poppins-SemiBold'
+    fontFamily:'KRDEV011'
   },
   container:{
     justifyContent: 'center', 

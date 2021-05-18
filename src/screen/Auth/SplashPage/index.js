@@ -12,7 +12,7 @@ const Splash=()=>{
     return(
         <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
             <Image style={{width:150,height:150}} source={require('../../../assets/Images/logo1.jpg')}/>
-            <Text style={{fontSize:18,fontFamily:'Poppins-Bold',color:'red',marginTop:10}}>
+            <Text style={{fontSize:18,fontFamily:"KrutiDev010",color:'red',marginTop:10}}>
                ABTYP APP
             </Text>
         </View>

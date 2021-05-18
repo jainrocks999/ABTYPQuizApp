@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   buttonText: {
     alignSelf: "center",
     color: colors.white,
-    fontFamily:'Poppins-Bold',
+    fontFamily:'Krdev016',
     fontSize: 16,
   },
 });

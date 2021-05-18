@@ -34,6 +34,6 @@ const styles=StyleSheet.create({
     text:{
         color:'white',
         fontSize:17,
-        fontFamily:'Poppins-Bold'
+        fontFamily:'KRDEV011'
     },
 })

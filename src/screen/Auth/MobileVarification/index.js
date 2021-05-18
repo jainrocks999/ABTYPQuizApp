@@ -47,7 +47,7 @@ const MobileVarification=()=>{
            </View>
            <View style={styles.second}>
             <View style={{justifyContent:'flex-start',width:'100%'}}>
-            <Text style={{fontFamily:'Poppins-Medium'}}>Mobile</Text>
+            <Text style={{fontFamily:'KRDEV011'}}>Mobile</Text>
             </View>
            <TextInput
             placeholder='Enter Mobile Number'

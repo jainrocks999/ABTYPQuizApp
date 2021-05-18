@@ -6,13 +6,14 @@ import { useNavigation } from '@react-navigation/native';
 import StatusBar from '../../../component/StatusBar';
 import Pdf from 'react-native-pdf';
 import Header from '../../../component/header';
+import Lang from '../../../component/language';
 const Book=()=>{
   const navigation=useNavigation()
   const source = {uri:'http://samples.leanpub.com/thereactnativebook-sample.pdf',cache:true};
     return(
          <View style={styles.container}>
           <Header
-          title='E-Book'
+          title={Lang.Ebook}
           />
          <View style={styles.second}>
          <View style={styles.main1}>

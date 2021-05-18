@@ -47,7 +47,7 @@ elevation: 5,
     color: colors.black,
     fontSize: 14,
     alignSelf: 'center',
-  //  fontFamily: 'Bitter-SemiBold',
+
  
     textAlign: 'center',
   },

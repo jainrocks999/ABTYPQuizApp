@@ -15,9 +15,10 @@ const Drawer = createDrawerNavigator();
 function MyDrawer() {
   return (
     <Drawer.Navigator drawerContent={() => <DrawerContent />}>
+        <Drawer.Screen name="Home" component={HomeScreen} />
        <Drawer.Screen name="About" component={AboutABTYP} />
        <Drawer.Screen name="Quiz" component={QuizScreen} />
-       <Drawer.Screen name="Home" component={HomeScreen} />
+     
        <Drawer.Screen name="HowTo" component={HowToPlay} />
        <Drawer.Screen name="Login" component={LoginPage} />
        <Drawer.Screen name='Contact' component={Contact}/> 

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Image, View, TouchableOpacity, Text } from 'react-native';
 import styles from './style';
 import { useNavigation } from '@react-navigation/native';
+import Lang from '../../component/language';
 
 const BottomTab = (props) => {
   const navigation = useNavigation();
@@ -14,7 +15,7 @@ const BottomTab = (props) => {
           source={require('../../assets/Images/orders.png')}
           style={styles.bottomTab}
         />
-        <Text style={styles.text} >Home</Text>
+        <Text style={styles.text}>{Lang.Home}</Text>
       </View>
     );
 
@@ -27,7 +28,7 @@ const BottomTab = (props) => {
           source={require('../../assets/Images/analytic.png')}
           style={styles.bottomTab}
         />
-        <Text style={styles.text}>AboutABTYP</Text>
+        <Text style={styles.text}>{Lang.AboutApp}</Text>
       </View>
     );
 
@@ -40,7 +41,7 @@ const BottomTab = (props) => {
           source={require('../../assets/Images/histroy.png')}
           style={styles.bottomTab}
         />
-        <Text style={styles.text}>HowToPlay</Text>
+        <Text style={styles.text}>{Lang.HowToPlay}</Text>
       </View>
     );
 
@@ -53,7 +54,7 @@ const BottomTab = (props) => {
           source={require('../../assets/Images/share.png')}
           style={styles.bottomTab}
         />
-        <Text style={styles.text}>Login</Text>
+        <Text style={styles.text}>{Lang.Login}</Text>
       </View>
     );
 
