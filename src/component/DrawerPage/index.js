@@ -20,6 +20,7 @@ export default function DrawerContent(props) {
     const navigation = useNavigation();
     const [Email, setEmail] = useState("");
     const [Name, setName] = useState("");
+    const [mobile,setMobile]=useState('')
     const dispatch=useDispatch()
     useEffect(() => {
         initial();
@@ -28,8 +29,10 @@ export default function DrawerContent(props) {
     const initial = async () => {
         let Email = await AsyncStorage.getItem('Email');
         let Name = await AsyncStorage.getItem('Name');
+        let mobile=await AsyncStorage.getItem(Storage.mobile)
         setEmail(Email);
         setName(Name);
+        setMobile(mobile)
     }
     const getLogout=async()=>{
         const userid=await AsyncStorage.getItem(Storage.userid)
@@ -147,6 +150,7 @@ export default function DrawerContent(props) {
                         </View>
                     </View>
                 </TouchableOpacity>
+                {mobile?
                 <TouchableOpacity
                     onPress={() => {
                         navigation.navigate('HelpPage')
@@ -161,7 +165,9 @@ export default function DrawerContent(props) {
                             <Text style={styles.text}> Logout</Text>
                         </View>
                     </TouchableOpacity>
-                </TouchableOpacity>    
+                </TouchableOpacity>:
+                <View></View>
+            } 
             </ScrollView>
         </DrawerContentScrollView>
     );

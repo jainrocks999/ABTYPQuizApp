@@ -19,15 +19,7 @@ const Login=()=>{
     const [mobile,setMobile]=useState('')
 const validateUser=()=>{
 
-    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    if(reg.test(email_id)==false){
-        Toast.show('Please Enter Valid Email')
-        return false
-    }
-    else if(password==''){
-        Toast.show('Please Enter Password')
-    }
-    else if(mobile==''){
+    if(mobile==''){
         Toast.show('Please Enter Mobile Number')
     }
     else{

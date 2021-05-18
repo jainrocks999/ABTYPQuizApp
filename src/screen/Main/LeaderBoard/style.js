@@ -8,7 +8,7 @@ export default StyleSheet.create({
     },
     second:{
         paddingHorizontal:10,
-        flex:1
+       // flex:1
     },
     main:{
         width:'100%',

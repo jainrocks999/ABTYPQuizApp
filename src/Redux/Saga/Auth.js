@@ -84,6 +84,9 @@ function* logout(action) {
       payload: response.user,
     });
       Toast.show(response.msg);
+      AsyncStorage.setItem(Storage.mobile,'')
+      AsyncStorage.setItem(Storage.userid,''),
+      AsyncStorage.setItem(Storage.email,'')
       action.navigation.navigate('Login')
   } else {
     Toast.show(response.msg);

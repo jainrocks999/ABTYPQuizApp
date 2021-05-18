@@ -7,8 +7,9 @@ const Splash=()=>{
         initial();
       }, []);
       const initial = async () => {
-         setTimeout(() => navigation.navigate("Dashboard"), 3000);
+         setTimeout(() => navigation.navigate("Step"), 3000);
       }
+      //Dashboard
     return(
         <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
             <Image style={{width:150,height:150}} source={require('../../../assets/Images/logo1.jpg')}/>
