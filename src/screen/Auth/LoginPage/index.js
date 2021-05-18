@@ -26,7 +26,7 @@ const validateUser=()=>{
     else{
         dispatch({
           type: 'User_Login_Request',
-          url: 'login',
+          url: 'mlogin',
           mobile,
           navigation: navigation,
         })

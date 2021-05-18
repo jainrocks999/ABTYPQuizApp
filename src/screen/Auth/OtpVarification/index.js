@@ -22,6 +22,7 @@ const OtpVarification=()=>{
     const getMobile=async()=>{
         const email_id=await AsyncStorage.getItem(Storage.email)
         const mobile=await AsyncStorage.getItem(Storage.mobile)
+        console.log('testing',mobile,email_id,otp)
         console.log('working--------------------------------',otp);
        if(otp==''){
         Toast.show('Please Enter OTP Code')
@@ -32,6 +33,7 @@ const OtpVarification=()=>{
             url: 'verify_otp',
             email_id,
             otp,
+            mobile,
             navigation:navigation
           });
         }

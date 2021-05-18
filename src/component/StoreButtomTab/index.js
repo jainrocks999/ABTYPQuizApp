@@ -84,7 +84,7 @@ const BottomTab = (props) => {
       <TouchableOpacity
         style={styles.bottomTabContainer}
         onPress={() => {
-          navigation.navigate('Quiz');
+          navigation.navigate('Category');
         }}>
         {renderImageReport()}
       </TouchableOpacity>

@@ -7,8 +7,7 @@ export default StyleSheet.create({
         backgroundColor:'white'
     },
     second:{
-        paddingHorizontal:10,
-       // flex:1
+     // height:'100%'
     },
     main:{
         width:'100%',
@@ -31,8 +30,10 @@ export default StyleSheet.create({
         elevation:5,
         borderRadius:10,
         backgroundColor:'white',
-        height:60,
-        marginTop:20,
-        padding:10
+        //height:60,
+        marginTop:10,
+        padding:10,
+        marginHorizontal:10,
+        marginBottom:2
     }
 })

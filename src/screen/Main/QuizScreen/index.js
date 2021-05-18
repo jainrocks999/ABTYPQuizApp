@@ -6,6 +6,8 @@ import BottomTab from '../../../component/StoreButtomTab';
 import styles from './style';
 import StatusBar from '../../../component/StatusBar';
 import Header from "../../../component/header";
+import { connect } from 'react-redux';
+
 class Quiz extends React.Component {
   constructor(props){
     super(props)
@@ -22,13 +24,24 @@ class Quiz extends React.Component {
       questions:questions,
       timer: null,
       counter: 60,
+      id: this.props.route.params.id,
+      questionList:[],
+      //apiCall()
     };
   }
+  apiCall=()=>{
+    this.props.dispatch({
+      type:'GetQuiz_List_Request',
+      url:'getquestion_quizbyid',
+      quiz_id:this.state.id
+    })
+  }
   componentDidMount() {
+    this.apiCall()
     const {counter} = this.state
-        let timer = setInterval(this.tick, 1000);
+    console.log(' i amd dtrkjdlkadjfk',this.state.id)
+    let timer = setInterval(this.tick, 1000);
     this.setState({timer});
-    
   }
 
   componentWillUnmount() {
@@ -46,13 +59,13 @@ class Quiz extends React.Component {
     }  
    
   }
-  answer = (correct,index) => {
-  if(correct){
+  answer = (correct) => {
+  if(correct==1){
     this.setState(
       state => {
-        const nextState = { answered: true };
+        const nextState = { answered: 1 };
         state.disable=true;
-        state.questions[state.index].answers[index].color='green'
+        //state.questions[state.index].answers[index].color='green'
         if (correct) {
           nextState.correctCount = state.correctCount + 1;
           nextState.answerCorrect = true;
@@ -71,10 +84,10 @@ class Quiz extends React.Component {
       state => {
         const nextState = { answered: true };
         state.disable=true;
-        state.questions[state.index].answers[index].correct==true?
-        state.questions[state.index].answers[index].color='green':
-        state.questions[state.index].answers[index].color='red'
-        if (correct) {
+        // state.questions[state.index].answers[index].correct==true?
+        // state.questions[state.index].answers[index].color='green':
+        // state.questions[state.index].answers[index].color='red'
+        if (correct==1) {
           nextState.correctCount = state.correctCount + 1;
           nextState.answerCorrect = true;
         } else {
@@ -106,10 +119,11 @@ alertFunction=()=>{
 }
 
   nextQuestion = () => {
+    const list=this.props.CategoryList
     try {
       this.setState(state => {
         const nextIndex = state.activeQuestionIndex + 1;
-          if (nextIndex >= this.state.questions.length+1) {
+          if (nextIndex >= list.length+1) {
           return this.props.navigation.popToTop();
         }
         return {
@@ -127,7 +141,8 @@ alertFunction=()=>{
   };
    
      next = () => {
-        if(this.state.index <=this.state.questions.length-2){
+      const list=this.props.CategoryList
+        if(this.state.index <=list.length-2){
         this.setState(state => {
           const index = state.index + 1;
           state.disable=false
@@ -141,7 +156,8 @@ alertFunction=()=>{
        }
     };
     previous = () => {
-      if(this.state.index <=this.state.questions.length-1 ){
+      const list=this.props.CategoryList
+      if(this.state.index <=list.length-1 ){
         if(this.state.index!=0){
        this.setState(state => {
          const index = state.index - 1;
@@ -155,7 +171,10 @@ alertFunction=()=>{
       else{
       }
    };
+  
   render() {
+  const {CategoryList}= this.props
+  const list=CategoryList
     return (
      <View style={{flex:1}}>
       <View style={{flex:1}}>
@@ -168,7 +187,7 @@ alertFunction=()=>{
           <View style={{alignSelf:'flex-start',}}>
           <Text style={[styles.text]}>
           Total Question </Text>
-        <Text style={[{textAlign:'center',marginLeft:10},styles.text]}>{this.state.questions.length}</Text>
+        <Text style={[{textAlign:'center',marginLeft:10},styles.text]}>{list.length}</Text>
           </View>
           <View style={{alignSelf:'flex-end'}}>
           <Text style={[styles.text]}>
@@ -180,13 +199,13 @@ alertFunction=()=>{
          
           </View>
           <View style={{paddingHorizontal:10,marginTop:10}}>
-           <Text style={[{alignSelf:'center'},styles.text]}>{this.state.questions[this.state.index].question}</Text>
+           <Text style={[{alignSelf:'center'},styles.text]}>{list[this.state.index].question}</Text>
         </View>
         </View>
           <SafeAreaView style={{marginBottom:60}}>
-          <View style={{paddingHorizontal:10}}>
-            <ButtonContainer>
-            {this.state.questions[this.state.index].answers.map((answer,index)=>(
+          <View style={{paddingHorizontal:10,justifyContent:'center',alignItems:'center',marginTop:50}}>
+            {/* <ButtonContainer>
+            {list[this.state.index].answers.map((answer,index)=>(
                <Button
                disable={this.state.disable}
                 color={answer.color}
@@ -194,12 +213,36 @@ alertFunction=()=>{
                  onPress={() => this.answer(answer.correct,index)}
                /> 
             ))}  
-            </ButtonContainer>
+            </ButtonContainer> */}
+            <TouchableOpacity 
+            onPress={()=>
+              this.answer(list[this.state.index].option_a_correct)
+            }
+            style={styles.button1}>
+              <Text style={{color:'white',fontSize:18}}>{list[this.state.index].option_a}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+             onPress={()=>
+              this.answer(list[this.state.index].option_b_correct)
+            }
+             style={styles.button1}>
+              <Text style={{color:'white',fontSize:18}}>{list[this.state.index].option_b}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+             onPress={()=>
+              this.answer(list[this.state.index].option_c_correct)
+            }
+             style={styles.button1}>
+              <Text style={{color:'white',fontSize:18}}>{list[this.state.index].option_c}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+             onPress={()=>
+              this.answer(list[this.state.index].option_d_correct)
+            }
+             style={styles.button1}>
+              <Text style={{color:'white',fontSize:18}}>{list[this.state.index].option_d}</Text>
+            </TouchableOpacity>
           </View>
-          {/* <Popup
-          correct={this.state.answerCorrect}
-          visible={this.state.answered}
-        /> */}
         </SafeAreaView> 
         </ScrollView>
       </View>
@@ -209,7 +252,14 @@ alertFunction=()=>{
     );
   }
 }
-export default Quiz;
+const mapStateToProps = state => {
+  return {
+    isFetching: state.isFetching,
+    CategoryList:state.GetListById
+  };
+};
+export default connect(mapStateToProps)(Quiz);
+
   const questions = [
     {
       question: "How can you create a new React Native project?",

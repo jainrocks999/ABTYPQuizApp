@@ -5,6 +5,9 @@ initialstate = {
   Logout: [],
   Mobile: [],
   OTP: [],
+  CategoryList:[],
+  GetListById:[],
+  LeaderBoard:[]
 };
 export default (state = initialstate, action) => {
   switch (action.type) {
@@ -51,6 +54,27 @@ export default (state = initialstate, action) => {
     case 'Quiz_Data_Error':
       return { ...state, isFetching: false };
 
+    //CategoryList
+    case 'Category_List_Request':
+      return { ...state, isFetching: true };
+    case 'Category_List_Success':
+      return { ...state, isFetching: false, CategoryList: action.payload };
+    case 'Category_List_Error':
+      return { ...state, isFetching: false };
+    //getData
+    case 'GetQuiz_List_Request':
+      return { ...state, isFetching: true };
+    case 'GetQuiz_List_Success':
+      return { ...state, isFetching: false, GetListById: action.payload };
+    case 'GetQuiz_List_Error':
+      return { ...state, isFetching: false };
+
+    case 'Leader_Board_Request':
+      return { ...state, isFetching: true };
+    case 'Leader_Board_Success':
+      return { ...state, isFetching: false, LeaderBoard: action.payload };
+    case 'Leader_Board_Error':
+      return { ...state, isFetching: false };
     default:
       return state;
   }

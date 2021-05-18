@@ -7,7 +7,7 @@ const Splash=()=>{
         initial();
       }, []);
       const initial = async () => {
-         setTimeout(() => navigation.navigate("Step"), 3000);
+         setTimeout(() => navigation.navigate("Dashboard"), 3000);
       }
       //Dashboard
     return(

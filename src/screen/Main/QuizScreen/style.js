@@ -55,5 +55,15 @@ export default StyleSheet.create({
         color:'white',
         fontSize:17,
         fontFamily:'Poppins-Bold'
+    },
+    button1:{
+      backgroundColor:'red',
+      width:'80%',
+      height:45,
+      borderRadius:10,
+      alignItems:'center',
+      justifyContent:'center',
+      marginVertical:5
     }
+
 })

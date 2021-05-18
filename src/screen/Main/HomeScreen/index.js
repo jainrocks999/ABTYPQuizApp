@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { View,Text,Image, TouchableOpacity } from 'react-native';
 import BottomTab from '../../../component/StoreButtomTab';
 import styles from './styles';
@@ -6,8 +6,28 @@ import StatusBar from '../../../component/StatusBar';
 import { useNavigation } from '@react-navigation/native';
 import Header from '../../../component/header';
 import Lang from '../../../component/language';
+import { useDispatch } from 'react-redux';
+import AsyncStorage from '@react-native-community/async-storage';
+import Storage from '../../../component/AsyncStorage';
 const Home=()=>{
   const navigation=useNavigation()
+  const dispatch=useDispatch()
+  useEffect(async()=>{
+    const user_id=await AsyncStorage.getItem(Storage.userid)
+    console.log('user id',user_id);
+    dispatch({
+        type: 'Category_List_Request',
+        url: 'getquiz',
+      })
+      dispatch({
+        type: 'Leader_Board_Request',
+        user_id,
+        url: 'leaderboard',
+
+      })
+      
+    
+},[])
     return(
          <View style={styles.container}>
            <Header
