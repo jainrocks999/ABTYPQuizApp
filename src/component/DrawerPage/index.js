@@ -151,11 +151,9 @@ export default function DrawerContent(props) {
                         </View>
                     </View>
                 </TouchableOpacity>
-                {mobile?
-                <TouchableOpacity
-                    onPress={() => {
-                        navigation.navigate('HelpPage')
-                    }}>
+               
+                <TouchableOpacity>
+                     {mobile?
                     <TouchableOpacity 
                     onPress={()=>Logout()}
                     style={[styles.drawer]}>
@@ -166,9 +164,11 @@ export default function DrawerContent(props) {
                             <Text style={styles.text}>{lang.Logout}</Text>
                         </View>
                     </TouchableOpacity>
-                </TouchableOpacity>:
-                <View></View>
-            } 
+                     :
+                     <View></View>
+                 } 
+                </TouchableOpacity>
+               
             </ScrollView>
         </DrawerContentScrollView>
     );

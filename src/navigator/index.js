@@ -5,6 +5,8 @@ import SplashScreen from "../screen/Auth/SplashPage";
 import DashBoardPage from "../screen/DashboardPage";
 import MobileVarification from '../screen/Auth/MobileVarification';
 import OtpVarification from '../screen/Auth/OtpVarification'
+
+
 const Stack = createStackNavigator();
 function Navigate() {
   return (

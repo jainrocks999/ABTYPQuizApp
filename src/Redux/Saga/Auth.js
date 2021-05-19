@@ -139,7 +139,7 @@ function* OTPVarification(action) {
       payload: response.user,
     })
       Toast.show(response.msg);
-      action.navigation.navigate('Quiz')
+      action.navigation.navigate('Home')
   } else {
     Toast.show(response.msg);
     yield put({
