@@ -8,7 +8,7 @@ export default StyleSheet.create({
       },
       text: {
         color: "red",
-        fontSize: 20,
+        fontSize: 16,
         letterSpacing: -0.02,
         fontWeight: "300"
       },
@@ -30,12 +30,12 @@ export default StyleSheet.create({
       },
       view:{
         width:'100%',
-        paddingHorizontal:10
+        padding:10
       },
       view1:{
         flexDirection:'row',
         justifyContent:'space-between',
-        padding:10
+        alignItems:'center'
     },
     main:{
         width:'100%',
@@ -57,13 +57,15 @@ export default StyleSheet.create({
         fontFamily:'Poppins-Bold'
     },
     button1:{
-      backgroundColor:'red',
-      width:'80%',
+      backgroundColor:'#02e7f7',
+      width:'100%',
       height:45,
       borderRadius:10,
       alignItems:'center',
       justifyContent:'center',
-      marginVertical:5
+      marginVertical:6,
+      //borderWidth:1,
+     // borderColor:'red'
     }
 
 })

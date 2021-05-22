@@ -9,7 +9,6 @@ import { useSelector } from 'react-redux';
 const Book=()=>{
   const navigation=useNavigation()
   const selector=useSelector(state=>state.LeaderBoard)
-  console.log('category list data',selector)
   const renderItem=(item)=>{
     return(
     <View>

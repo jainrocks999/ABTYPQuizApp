@@ -7,6 +7,7 @@ import styles from './style';
 import StatusBar from '../../../component/StatusBar';
 import Header from "../../../component/header";
 import { connect } from 'react-redux';
+import ProgressCircle from 'react-native-progress-circle'
 
 class Quiz extends React.Component {
   constructor(props){
@@ -21,13 +22,14 @@ class Quiz extends React.Component {
       data:[],
       disable:false,
       color:'',
-      questions:questions,
       timer: null,
-      counter: 60,
+      counter: 100,
       id: this.props.route.params.id,
+      roundname:this.props.route.params.roundname,
       questionList:[],
-      //apiCall()
+     
     };
+    this.apiCall()
   }
   apiCall=()=>{
     this.props.dispatch({
@@ -37,7 +39,7 @@ class Quiz extends React.Component {
     })
   }
   componentDidMount() {
-    this.apiCall()
+   // this.apiCall()
     const {counter} = this.state
     console.log(' i amd dtrkjdlkadjfk',this.state.id)
     let timer = setInterval(this.tick, 1000);
@@ -65,7 +67,6 @@ class Quiz extends React.Component {
       state => {
         const nextState = { answered: 1 };
         state.disable=true;
-        //state.questions[state.index].answers[index].color='green'
         if (correct) {
           nextState.correctCount = state.correctCount + 1;
           nextState.answerCorrect = true;
@@ -75,7 +76,7 @@ class Quiz extends React.Component {
         return nextState;
       },
       () => {
-        setTimeout(() => this.nextQuestion(), 600);
+        setTimeout(() => this.nextQuestion(), 500);
       }
     );
   }
@@ -84,9 +85,6 @@ class Quiz extends React.Component {
       state => {
         const nextState = { answered: true };
         state.disable=true;
-        // state.questions[state.index].answers[index].correct==true?
-        // state.questions[state.index].answers[index].color='green':
-        // state.questions[state.index].answers[index].color='red'
         if (correct==1) {
           nextState.correctCount = state.correctCount + 1;
           nextState.answerCorrect = true;
@@ -132,7 +130,7 @@ alertFunction=()=>{
         }
         
       },
-       ()=>{setTimeout(()=>this.next(),1000)}
+       ()=>{setTimeout(()=>this.next(),500)}
       );
     } catch (error) {
       console.log(error);
@@ -152,7 +150,12 @@ alertFunction=()=>{
         });
        }
        else{
-       this.alertFunction()
+      //  this.alertFunction()
+      this.props.navigation.navigate('Summery',{
+        correctCount:this.state.correctCount,
+        totalQuestion:list.length
+      }
+      )
        }
     };
     previous = () => {
@@ -175,6 +178,7 @@ alertFunction=()=>{
   render() {
   const {CategoryList}= this.props
   const list=CategoryList
+  console.log('list data is here',list)
     return (
      <View style={{flex:1}}>
       <View style={{flex:1}}>
@@ -184,26 +188,32 @@ alertFunction=()=>{
         <ScrollView>
         <View style={styles.view}>
           <View style={styles.view1}>
-          <View style={{alignSelf:'flex-start',}}>
-          <Text style={[styles.text]}>
-          Total Question </Text>
-        <Text style={[{textAlign:'center',marginLeft:10},styles.text]}>{list.length}</Text>
+              <Text style={[styles.text]}>
+              {`Question ${this.state.index+1} of ${list.length}`} </Text>
+            
+              <View style={{backgroundColor:'green',paddingHorizontal:10,paddingVertical:4,justifyContent:'center',alignItems:'center'}}>
+                <Text style={{color:'white'}}>{this.state.roundname}</Text>
+              </View>
           </View>
-          <View style={{alignSelf:'flex-end'}}>
-          <Text style={[styles.text]}>
-          Timer </Text>
-          <Text style={[{textAlign:'center'},styles.text]}>
-           {this.state.counter}
-          </Text> 
+          <View style={{alignItems:'center',justifyContent:'center',margin:10}}>
+          {/* <Text style={[styles.text]}>
+              {`Timer : ${this.state.counter}`}</Text> */}
+              <ProgressCircle
+                percent={this.state.counter}
+                radius={50}
+                borderWidth={8}
+                color="#3399FF"
+                shadowColor="#999"
+                bgColor="#fff"
+            >
+            <Text style={{ fontSize: 18 }}>{this.state.counter}</Text>
+        </ProgressCircle>
           </View>
-         
+          <View style={{marginTop:10,justifyContent:'center',alignItems:'center',padding:5,backgroundColor:'red'}}>
+           <Text style={{fontSize:18,color:'white'}}>{list[this.state.index].question}</Text>
           </View>
-          <View style={{paddingHorizontal:10,marginTop:10}}>
-           <Text style={[{alignSelf:'center'},styles.text]}>{list[this.state.index].question}</Text>
-        </View>
-        </View>
-          <SafeAreaView style={{marginBottom:60}}>
-          <View style={{paddingHorizontal:10,justifyContent:'center',alignItems:'center',marginTop:50}}>
+         </View>
+          <SafeAreaView style={{paddingHorizontal:10,marginTop:'10%',justifyContent:'center',alignItems:'center'}}>
             {/* <ButtonContainer>
             {list[this.state.index].answers.map((answer,index)=>(
                <Button
@@ -242,7 +252,6 @@ alertFunction=()=>{
              style={styles.button1}>
               <Text style={{color:'white',fontSize:18}}>{list[this.state.index].option_d}</Text>
             </TouchableOpacity>
-          </View>
         </SafeAreaView> 
         </ScrollView>
       </View>
@@ -260,146 +269,5 @@ const mapStateToProps = state => {
 };
 export default connect(mapStateToProps)(Quiz);
 
-  const questions = [
-    {
-      question: "How can you create a new React Native project?",
-      answers: [
-        { id: "1", text: "npx create-react-app new-app" ,color:'#42cef5' },
-        { id: "2", text: "npx react-native init new-app", correct: true ,color:'#42cef5'},
-        { id: "3", text: "npm create-react-native-app new-app"  ,color:'#42cef5'},
-        { id: "4", text: "expo run new-app"  ,color:'#42cef5'}
-      ]
-    },
-    {
-      question: "How to run react native app ?",
-      answers: [
-        { id: "1", text: "npx run android" ,color:'#42cef5' },
-        { id: "2", text: "npx react-native-run-android"  ,color:'#42cef5'},
-        { id: "3", text: "npx react-native run-android", correct: true ,color:'#42cef5' },
-        { id: "4", text: "react-native run android" ,color:'#42cef5' }
-      ]
-    },
-    {
-      question: "Command to Clean android in react native",
-      answers: [
-        { id: "1", text: "./gradlew clean", correct: true  ,color:'#42cef5'},
-        { id: "2", text: "android clean" ,color:'#42cef5'},
-        { id: "3", text: "./gradlew assembleRelease" ,color:'#42cef5' },
-        { id: "4", text: "./gradlew bat" ,color:'#42cef5' }
-      ]
-    },
-    {
-      question: "What kind of fruit was used to name a computer in 1984?",
-      answers: [
-        { id: "1", text: "Blackberry" ,color:'#42cef5' },
-        { id: "2", text: "Blueberry" ,color:'#42cef5' },
-        { id: "3", text: "Pear" ,color:'#42cef5' },
-        { id: "4", text: "Apple", correct: true  ,color:'#42cef5'}
-      ]
-    },
-    {
-      question: "What is localhost's IP address?",
-      answers: [
-        { id: "1", text: "192.168.1.1" ,color:'#42cef5' },
-        { id: "2", text: "127.0.0.1", correct: true  ,color:'#42cef5'},
-        { id: "3", text: "209.85.231.104"  ,color:'#42cef5'},
-        { id: "4", text: "66.220.149.25" ,color:'#42cef5' }
-      ]
-    },
-    {
-      question: "What kind of fruit was used to name a computer in 1984?",
-      answers: [
-        { id: "1", text: "Blackberry" ,color:'#42cef5' },
-        { id: "2", text: "Blueberry"  ,color:'#42cef5'},
-        { id: "3", text: "Pear" ,color:'#42cef5' },
-        { id: "4", text: "Apple", correct: true  ,color:'#42cef5'}
-      ]
-    }, {
-      question: "What is localhost's IP address?",
-      answers: [
-        { id: "1", text: "192.168.1.1"  ,color:'#42cef5'},
-        { id: "2", text: "127.0.0.1", correct: true ,color:'#42cef5' },
-        { id: "3", text: "209.85.231.104" ,color:'#42cef5' },
-        { id: "4", text: "66.220.149.25" ,color:'#42cef5' }
-      ]
-    },
-    {
-      question: "What kind of fruit was used to name a computer in 1984?",
-      answers: [
-        { id: "1", text: "Blackberry" ,color:'#42cef5' },
-        { id: "2", text: "Blueberry" ,color:'#42cef5' },
-        { id: "3", text: "Pear" ,color:'#42cef5' },
-        { id: "4", text: "Apple", correct: true ,color:'#42cef5' }
-      ]
-    }, {
-      question: "What is localhost's IP address?",
-      answers: [
-        { id: "1", text: "192.168.1.1"  ,color:'#42cef5'},
-        { id: "2", text: "127.0.0.1", correct: true ,color:'#42cef5' },
-        { id: "3", text: "209.85.231.104" ,color:'#42cef5' },
-        { id: "4", text: "66.220.149.25" ,color:'#42cef5' }
-      ]
-    },
-    {
-      question: "What kind of fruit was used to name a computer in 1984?",
-      answers: [
-        { id: "1", text: "Blackberry" ,color:'#42cef5' },
-        { id: "2", text: "Blueberry" ,color:'#42cef5' },
-        { id: "3", text: "Pear"  ,color:'#42cef5'},
-        { id: "4", text: "Apple", correct: true  ,color:'#42cef5'}
-      ]
-    }, {
-      question: "What is localhost's IP address?",
-      answers: [
-        { id: "1", text: "192.168.1.1" ,color:'#42cef5' },
-        { id: "2", text: "127.0.0.1", correct: true ,color:'#42cef5' },
-        { id: "3", text: "209.85.231.104"  ,color:'#42cef5'},
-        { id: "4", text: "66.220.149.25" ,color:'#42cef5' }
-      ]
-    },
-    {
-      question: "What kind of fruit was used to name a computer in 1984?",
-      answers: [
-        { id: "1", text: "Blackberry" ,color:'#42cef5' },
-        { id: "2", text: "Blueberry" ,color:'#42cef5' },
-        { id: "3", text: "Pear"  ,color:'#42cef5'},
-        { id: "4", text: "Apple", correct: true ,color:'#42cef5' }
-      ]
-    }, {
-      question: "What is localhost's IP address?",
-      answers: [
-        { id: "1", text: "192.168.1.1" ,color:'#42cef5' },
-        { id: "2", text: "127.0.0.1", correct: true  ,color:'#42cef5'},
-        { id: "3", text: "209.85.231.104" ,color:'#42cef5' },
-        { id: "4", text: "66.220.149.25" ,color:'#42cef5' }
-      ]
-    },
-    {
-      question: "What kind of fruit was used to name a computer in 1984?",
-      answers: [
-        { id: "1", text: "Blackberry"  ,color:'#42cef5'},
-        { id: "2", text: "Blueberry" ,color:'#42cef5' },
-        { id: "3", text: "Pear" ,color:'#42cef5' },
-        { id: "4", text: "Apple", correct: true ,color:'#42cef5' }
-      ]
-    }, {
-      question: "What is localhost's IP address?",
-      answers: [
-        { id: "1", text: "192.168.1.1" ,color:'#42cef5' },
-        { id: "2", text: "127.0.0.1", correct: true ,color:'#42cef5' },
-        { id: "3", text: "209.85.231.104" ,color:'#42cef5' },
-        { id: "4", text: "66.220.149.25" ,color:'#42cef5' }
-      ]
-    },
-    {
-      question: "What kind of fruit was used to name a computer in 1984?",
-      answers: [
-        { id: "1", text: "Blackberry" ,color:'#42cef5' },
-        { id: "2", text: "Blueberry" ,color:'#42cef5' },
-        { id: "3", text: "Pear" ,color:'#42cef5' },
-        { id: "4", text: "Apple", correct: true  ,color:'#42cef5'}
-      ]
-    }
-  ];
  
 

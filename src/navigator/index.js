@@ -5,7 +5,7 @@ import SplashScreen from "../screen/Auth/SplashPage";
 import DashBoardPage from "../screen/DashboardPage";
 import MobileVarification from '../screen/Auth/MobileVarification';
 import OtpVarification from '../screen/Auth/OtpVarification'
-
+import Summery from '../screen/Main/Summery';
 
 const Stack = createStackNavigator();
 function Navigate() {
@@ -17,6 +17,7 @@ function Navigate() {
         <Stack.Screen name="Dashboard" component={DashBoardPage} /> 
         <Stack.Screen name="Mobile" component={MobileVarification}/>
         <Stack.Screen name="Otp" component={OtpVarification}/>
+        <Stack.Screen name="Summery" component={Summery}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

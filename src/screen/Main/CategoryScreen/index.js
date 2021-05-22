@@ -27,6 +27,7 @@ const HowTo=()=>{
              onPress={() => {
                 navigation.navigate('Quiz', {
                   id: item.id,
+                  roundname:item.roundname
                 });
               }}
              style={styles.card}>
