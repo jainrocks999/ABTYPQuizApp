@@ -14,21 +14,17 @@ const Contact=()=>{
           title={Lang.ContactUs}
           />
           <View style={styles.second}>
-          <View style={styles.card}>
-             
+          <View style={styles.card}>      
               <View style={styles.view}>
               <Text style={styles.text}>{Lang.contactNode}</Text>
               </View>
               <View style={styles.view}>
               <Text style={styles.text}>{Lang.phone}</Text>
               </View>
-              <View style={styles.view}>
-             
+              <View style={styles.view}>          
               <Text style={styles.text}>{Lang.EmailData}</Text>
-              </View>
-              
+              </View> 
             </View>
-          
          </View>
          <StatusBar/>
          <BottomTab/>

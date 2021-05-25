@@ -1,19 +1,20 @@
 import React,{useEffect} from 'react';
 import { View,Text,Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import styles from './style';
 const Splash=()=>{
     const navigation=useNavigation()
     useEffect(() => {
         initial();
       }, []);
       const initial = async () => {
-         setTimeout(() => navigation.navigate("Dashboard"), 3000);
+         setTimeout(() => navigation.replace("Dashboard"), 2000);
       }
-      //Dashboard
     return(
-        <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-            <Image style={{width:150,height:150}} source={require('../../../assets/Images/logo1.jpg')}/>
-            <Text style={{fontSize:18,fontFamily:"KrutiDev010",color:'red',marginTop:10}}>
+        <View style={styles.container}>
+            <Image style={styles.image} 
+             source={require('../../../assets/Images/logo1.jpg')}/>
+            <Text style={styles.text}>
                ABTYP APP
             </Text>
         </View>

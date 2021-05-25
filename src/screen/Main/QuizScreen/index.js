@@ -8,6 +8,7 @@ import StatusBar from '../../../component/StatusBar';
 import Header from "../../../component/header";
 import { connect } from 'react-redux';
 import ProgressCircle from 'react-native-progress-circle'
+import Loader from '../../../component/loader';
 
 class Quiz extends React.Component {
   constructor(props){
@@ -27,21 +28,16 @@ class Quiz extends React.Component {
       id: this.props.route.params.id,
       roundname:this.props.route.params.roundname,
       questionList:[],
-     
+      list:[]
     };
-    this.apiCall()
   }
-  apiCall=()=>{
+  componentDidMount() {
     this.props.dispatch({
       type:'GetQuiz_List_Request',
       url:'getquestion_quizbyid',
       quiz_id:this.state.id
     })
-  }
-  componentDidMount() {
-   // this.apiCall()
     const {counter} = this.state
-    console.log(' i amd dtrkjdlkadjfk',this.state.id)
     let timer = setInterval(this.tick, 1000);
     this.setState({timer});
   }
@@ -94,26 +90,34 @@ class Quiz extends React.Component {
         return nextState;
       },
       () => {
-        setTimeout(() =>this.state.counter!=0? this.nextQuestion():this.alertFunction(), 600);
+        setTimeout(() =>this.state.counter!=0? 
+        this.nextQuestion():
+        Alert.alert('Sorry your time has been finished'), 600);
       }
     );
   }
    
   };
 alertFunction=()=>{
-  Alert.alert(
-    "Quiz Result",
-    "Correct answer  "+this.state.correctCount,
-    [
-      {
-        text: "Cancel",
-        onPress: () => console.log("Cancel Pressed"),
-        style: "cancel"
-      },
-      { text: "OK", onPress: () => console.log("OK Pressed") }
-    ],
-    { cancelable: false }
-  );
+  const list=this.props.CategoryList
+  this.props.navigation.navigate('Summery',{
+    // correctCount:71,
+    // totalQuestion:101
+    correctCount:this.state.correctCount,
+    totalQuestion:list.length
+  }
+  )
+  this.setState(state=>{
+      state.correctCount= 0,
+      state.totalCount=0,
+      state.activeQuestionIndex= 0,
+      state.answered= false,
+      state.answerCorrect= false,
+      state.index=0,
+      state.timer=null,
+      state.counter=100
+  })
+
 }
 
   nextQuestion = () => {
@@ -127,18 +131,16 @@ alertFunction=()=>{
         return {
           activeQuestionIndex: nextIndex,
           answered: false
-        }
-        
+        } 
       },
        ()=>{setTimeout(()=>this.next(),500)}
       );
-    } catch (error) {
+      } catch (error) {
       console.log(error);
-    }
-    
+   }  
   };
    
-     next = () => {
+  next = () => {
       const list=this.props.CategoryList
         if(this.state.index <=list.length-2){
         this.setState(state => {
@@ -150,12 +152,7 @@ alertFunction=()=>{
         });
        }
        else{
-      //  this.alertFunction()
-      this.props.navigation.navigate('Summery',{
-        correctCount:this.state.correctCount,
-        totalQuestion:list.length
-      }
-      )
+      this.alertFunction()
        }
     };
     previous = () => {
@@ -176,13 +173,13 @@ alertFunction=()=>{
    };
   
   render() {
-  const {CategoryList}= this.props
+  const {CategoryList,isFetching}= this.props
   const list=CategoryList
-  console.log('list data is here',list)
+   if(list.length>0){
     return (
      <View style={{flex:1}}>
       <View style={{flex:1}}>
-          <Header
+        <Header
           title='Quiz Screen'
           />
         <ScrollView>
@@ -190,14 +187,11 @@ alertFunction=()=>{
           <View style={styles.view1}>
               <Text style={[styles.text]}>
               {`Question ${this.state.index+1} of ${list.length}`} </Text>
-            
-              <View style={{backgroundColor:'green',paddingHorizontal:10,paddingVertical:4,justifyContent:'center',alignItems:'center'}}>
+              <View style={styles.main1}>
                 <Text style={{color:'white'}}>{this.state.roundname}</Text>
               </View>
           </View>
-          <View style={{alignItems:'center',justifyContent:'center',margin:10}}>
-          {/* <Text style={[styles.text]}>
-              {`Timer : ${this.state.counter}`}</Text> */}
+          <View style={styles.prog}>
               <ProgressCircle
                 percent={this.state.counter}
                 radius={50}
@@ -209,48 +203,38 @@ alertFunction=()=>{
             <Text style={{ fontSize: 18 }}>{this.state.counter}</Text>
         </ProgressCircle>
           </View>
-          <View style={{marginTop:10,justifyContent:'center',alignItems:'center',padding:5,backgroundColor:'red'}}>
-           <Text style={{fontSize:18,color:'white'}}>{list[this.state.index].question}</Text>
+          <View style={styles.ques}>
+           <Text style={styles.index}>{list[this.state.index].question}</Text>
           </View>
          </View>
-          <SafeAreaView style={{paddingHorizontal:10,marginTop:'10%',justifyContent:'center',alignItems:'center'}}>
-            {/* <ButtonContainer>
-            {list[this.state.index].answers.map((answer,index)=>(
-               <Button
-               disable={this.state.disable}
-                color={answer.color}
-                 text={answer.text}
-                 onPress={() => this.answer(answer.correct,index)}
-               /> 
-            ))}  
-            </ButtonContainer> */}
+          <SafeAreaView style={styles.safe}>
             <TouchableOpacity 
             onPress={()=>
               this.answer(list[this.state.index].option_a_correct)
             }
             style={styles.button1}>
-              <Text style={{color:'white',fontSize:18}}>{list[this.state.index].option_a}</Text>
+              <Text style={styles.answer}>{list[this.state.index].option_a}</Text>
             </TouchableOpacity>
             <TouchableOpacity
              onPress={()=>
               this.answer(list[this.state.index].option_b_correct)
             }
              style={styles.button1}>
-              <Text style={{color:'white',fontSize:18}}>{list[this.state.index].option_b}</Text>
+              <Text style={styles.answer}>{list[this.state.index].option_b}</Text>
             </TouchableOpacity>
             <TouchableOpacity
              onPress={()=>
               this.answer(list[this.state.index].option_c_correct)
             }
              style={styles.button1}>
-              <Text style={{color:'white',fontSize:18}}>{list[this.state.index].option_c}</Text>
+              <Text style={styles.answer}>{list[this.state.index].option_c}</Text>
             </TouchableOpacity>
             <TouchableOpacity
              onPress={()=>
               this.answer(list[this.state.index].option_d_correct)
             }
              style={styles.button1}>
-              <Text style={{color:'white',fontSize:18}}>{list[this.state.index].option_d}</Text>
+              <Text style={styles.answer}>{list[this.state.index].option_d}</Text>
             </TouchableOpacity>
         </SafeAreaView> 
         </ScrollView>
@@ -259,6 +243,12 @@ alertFunction=()=>{
       <BottomTab/>
       </View>
     );
+   }
+   else{
+     return(
+       <Loader/>
+     )
+   }
   }
 }
 const mapStateToProps = state => {
@@ -271,3 +261,13 @@ export default connect(mapStateToProps)(Quiz);
 
  
 
+ {/* <ButtonContainer>
+            {list[this.state.index].answers.map((answer,index)=>(
+               <Button
+               disable={this.state.disable}
+                color={answer.color}
+                 text={answer.text}
+                 onPress={() => this.answer(answer.correct,index)}
+               /> 
+            ))}  
+            </ButtonContainer> */}

@@ -30,10 +30,10 @@ export default function DrawerContent(props) {
     const initial = async () => {
         let Email = await AsyncStorage.getItem('Email');
         let Name = await AsyncStorage.getItem('Name');
-        let mobile=await AsyncStorage.getItem(Storage.mobile)
+        let mobileN=await AsyncStorage.getItem(Storage.mobile)
         setEmail(Email);
         setName(Name);
-        setMobile(mobile)
+        setMobile(mobileN)
     }
     const getLogout=async()=>{
         const userid=await AsyncStorage.getItem(Storage.userid)

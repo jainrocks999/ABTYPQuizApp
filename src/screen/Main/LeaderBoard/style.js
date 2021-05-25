@@ -35,5 +35,28 @@ export default StyleSheet.create({
         padding:10,
         marginHorizontal:10,
         marginBottom:2
+    },
+    main1:{
+        flexDirection:'row',
+        justifyContent:'space-between'
+    },
+    name:{
+        fontFamily:'Poppins-Medium',
+        color:'red'
+    },
+    time:{
+        fontFamily:'Poppins-Medium',
+        fontSize:13,
+        color:'red'
+    },
+    score:{
+        fontFamily:'Poppins-Medium',
+        color:'red'
+    },
+    bottom:{
+        bottom:0,
+        right:0,
+        left:0,
+        position:'absolute'
     }
 })

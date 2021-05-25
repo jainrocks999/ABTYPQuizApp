@@ -58,7 +58,29 @@ export default StyleSheet.create({
        fontFamily:'KRDEV011'
    },
    second:{
-    padding:20,
-    marginTop:100
-},
+       padding:20,
+       marginTop:100
+    },
+    otp:{
+        width: 40,
+        height: 45,
+        borderWidth: 1,
+        borderColor:'red',
+        borderRadius:6,
+        color:'red'
+    },
+    button:{
+        width:'100%',
+        marginTop:30,
+        marginBottom:50
+    },
+    titleCont:{
+        justifyContent:'flex-start',
+        width:'100%'
+    },
+    imageCont:{
+        width:'100%',
+        alignItems:'center',
+        marginTop:20
+    }
 })

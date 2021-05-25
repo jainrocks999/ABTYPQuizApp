@@ -28,5 +28,19 @@ export default StyleSheet.create({
         color:'white',
         fontSize:17,
         fontFamily:'KRDEV011'
+    },
+    imageContainer:{
+        alignItems:'center',
+        marginTop:20
+    },
+    titleCont:{
+        justifyContent:'flex-start',
+        width:'100%',
+        marginTop:5
+    },
+    button:{
+        width:'100%',
+        marginTop:30,
+        marginBottom:50
     }
 })

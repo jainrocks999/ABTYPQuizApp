@@ -14,17 +14,17 @@ const CustomButton1 = (props) => {
 const styles = StyleSheet.create({
   button: {
     width: "100%",
-    height:50,
+    height:40,
     backgroundColor: 'red',
     justifyContent: "center",
     alignItems: "center",
-    borderRadius:10
+    borderRadius:8
   },
   buttonText: {
     alignSelf: "center",
     color: colors.white,
     fontFamily:'Krdev016',
-    fontSize: 16,
+    fontSize: 18,
   },
 });
 

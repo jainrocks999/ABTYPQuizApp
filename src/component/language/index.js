@@ -39,7 +39,7 @@
 export default {
     Login: "Login",
     email: 'email',
-    mobbile: 'mobbile',
+    mobile: 'mobile',
     Registration: 'Registration',
     Leaderboard: 'Leader Board',
     ContactUs: 'Contactus',
@@ -50,7 +50,7 @@ export default {
     FirstName: 'First Name',
     LastName: 'Last Name',
     email: 'Email',
-    MobbileNumber: 'Mobbile Number',
+    MobileNumber: 'Mobile Number',
     Gender: 'Gender',
     Password: 'Password',
     ConfirmPassword: 'Confirm Password',

@@ -36,8 +36,8 @@ const RegisterPage=()=>{
     const [city,setCity]=useState('')
     const [state,setState]=useState('')
     const [pincode,setPincode]=useState('')
-    const [password,setPassword]=useState('')
-    const [confirm,setConfirm]=useState('')
+    const [password,setPassword]=useState('123456')
+    const [confirm,setConfirm]=useState('123456')
     const [date, setDate] = useState('09-10-2020');
 
 const userRegister=()=>{
@@ -113,9 +113,9 @@ const userRegister=()=>{
             title={Lang.Registration}
             />
            <ScrollView>
-
-           <View style={{alignItems:'center',marginTop:20}}>
-               <Image style={{width:100,height:100}} source={require('../../../assets/Images/logo1.jpg')}/>
+           <View style={styles.imageCont}>
+               <Image style={{width:100,height:100}} 
+               source={require('../../../assets/Images/logo1.jpg')}/>
            </View>
             <View style={styles.second}>
             <View style={styles.view}>
@@ -140,7 +140,7 @@ const userRegister=()=>{
             onChangeText={(text)=>setEmail(text)}
             />
             <View style={styles.view1}>
-            <Text style={{fontFamily:'KRDEV011'}}>{Lang.MobbileNumber}</Text>
+            <Text style={{fontFamily:'KRDEV011'}}>{Lang.MobileNumber}</Text>
             </View>
             <TextInput
             placeholder='Enter Mobile Number'
@@ -158,20 +158,6 @@ const userRegister=()=>{
             onSelect={(text)=>setGender(text)}
              options={data}/>
             </View>
-            {/* <View style={styles.view1}>
-            <Text style={{fontFamily:'KRDEV011'}}>Password</Text>
-            </View>
-            <TextInput
-            placeholder='Enter Password'
-            onChangeText={(text)=>setPassword(text)}
-            />
-            <View style={styles.view1}>
-            <Text style={{fontFamily:'KRDEV011'}}>Confirm Password</Text>
-            </View>
-            <TextInput
-            placeholder='Enter Confirm Password'
-            onChangeText={(text)=>setConfirm(text)}
-            /> */}
             <View style={styles.view1}>
             <Text style={{fontFamily:'KRDEV011'}}>{Lang.DateOfBirth}</Text>
             </View>
@@ -180,33 +166,7 @@ const userRegister=()=>{
             onChangeText={(text)=>setDob(text)}
             keyboardType='number-pad'
             />
-             {/* <View style={styles.drop}>
-             <DatePicker
-            date={date} // Initial date from state
-            mode="date" // The enum of date, datetime and time
-            placeholder="select date"
-            format="DD-MM-YYYY"
-            minDate="01-01-1990"
-            maxDate="01-01-2021"
-            confirmBtnText="Confirm"
-            cancelBtnText="Cancel"
-            customStyles={{
-            dateIcon: {
-              //display: 'none',
-              position: 'absolute',
-              left: 0,
-              top: 4,
-              marginLeft: 0,
-            },
-            dateInput: {
-              marginLeft: 36,
-            },
-          }}
-          onDateChange={(date) => {
-            setDate(date);
-          }}
-        />
-            </View> */}
+           
             <View style={styles.view1}>
             <Text style={{fontFamily:'KRDEV011'}}>{Lang.area}</Text>
             </View>
@@ -249,7 +209,7 @@ const userRegister=()=>{
             keyboardType='number-pad'
             />
           
-            <View style={{width:'100%',marginTop:30}}>
+            <View style={styles.button}>
             <CustomButton
             title={Lang.Registration}
             onPress={()=>userRegister()}

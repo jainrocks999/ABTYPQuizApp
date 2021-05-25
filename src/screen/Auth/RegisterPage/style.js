@@ -47,6 +47,14 @@ export default StyleSheet.create({
         justifyContent:'center',
         paddingHorizontal:8,
         borderRadius:10
+    },
+    imageCont:{
+        alignItems:'center',
+        marginTop:20
+    },
+    button:{
+        width:'100%',
+        marginTop:30
     }
    
 })

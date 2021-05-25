@@ -64,8 +64,39 @@ export default StyleSheet.create({
       alignItems:'center',
       justifyContent:'center',
       marginVertical:6,
-      //borderWidth:1,
-     // borderColor:'red'
+    },
+    main1:{
+      backgroundColor:'green',
+      paddingHorizontal:10,
+      paddingVertical:4,
+      justifyContent:'center',
+      alignItems:'center',
+      borderRadius:5
+    },
+    prog:{
+      alignItems:'center',
+      justifyContent:'center',
+      margin:10
+    },
+    ques:{
+      marginTop:10,
+      justifyContent:'center',
+      alignItems:'center',
+      padding:5
+    },
+    index:{
+      fontSize:18,
+      color:'red'
+    },
+    safe:{
+      paddingHorizontal:10,
+      marginTop:'10%',
+      justifyContent:'center',
+      alignItems:'center'
+    },
+    answer:{
+      color:'white',
+      fontSize:18
     }
 
 })

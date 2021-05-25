@@ -19,7 +19,6 @@ function* doLogin(action) {
       AsyncStorage.setItem(Storage.userid,response.user.userid)
       AsyncStorage.setItem(Storage.email,response.user.email)
       AsyncStorage.setItem(Storage.mobile,response.user.phone)
-
      action.navigation.navigate('Otp');
   } else {
     Toast.show(response.msg);
@@ -99,7 +98,7 @@ catch(error){
  Toast.show(error.message)
 }
 }
-/////Mobile Varification
+//Mobile Varification
 function* mobileVarification(action) {
   try{
   const data = new FormData();
@@ -131,7 +130,6 @@ function* OTPVarification(action) {
   const data = new FormData();
   data.append('email_id',action.email_id)
   data.append('otp',action.otp)
- // data.append('mobile',action.mobile)
   const response = yield call(Api.fetchDataByPOST, action.url, data);
   if (response.status==true) {
     yield put({
@@ -149,17 +147,15 @@ function* OTPVarification(action) {
 }
 catch(error){
  Toast.show(error.message)
-     }
+  }
 }
 function* getList(action) {
   const response = yield call(Api.fetchDataByGET, action.url);
-  console.log('responce in get list category',response)
   if (response.status == true) {
     yield put({
       type: 'Category_List_Success',
       payload: response.data,
     });
-    console.log('thsi is working-----------------------------------------------')
   } else {
     yield put({
       type: 'Category_List_Error',
@@ -172,13 +168,11 @@ function* getQuizById(action) {
   const data = new FormData();
   data.append('quiz_id',action.quiz_id)
   const response = yield call(Api.fetchDataByPOST, action.url, data);
-  console.log('responce in get list quiz list',response)
   if (response.status == true) {
     yield put({
       type: 'GetQuiz_List_Success',
       payload: response.data,
     });
-    console.log('thsi is working-----------------------------------------------')
   } else {
     yield put({
       type: 'GetQuiz_List_Error',
@@ -189,13 +183,11 @@ function* leaderBoard(action) {
   const data = new FormData();
   data.append('quiz_id',action.user_id)
   const response = yield call(Api.fetchDataByPOST, action.url, data);
-  console.log('responce in get list quiz list',response)
   if (response.status == true) {
     yield put({
       type: 'Leader_Board_Success',
       payload: response.data,
     });
-    console.log('thsi is working-----------------------------------------------')
   } else {
     yield put({
       type: 'Leader_Board_Error',
@@ -212,6 +204,4 @@ export default function* authSaga() {
   yield takeEvery('Category_List_Request',getList)
   yield takeEvery('GetQuiz_List_Request',getQuizById)
   yield takeEvery('Leader_Board_Request',leaderBoard)
-
-  
 }
