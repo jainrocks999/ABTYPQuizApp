@@ -1,6 +1,5 @@
 import React,{useState} from 'react';
-import { View,Image,Text, ScrollView,ImageBackground,TouchableOpacity } from 'react-native';
-import CustomButton from '../../../component/button1';
+import { View,Image,Text, ScrollView,ImageBackground,TouchableOpacity,Share, ShadowPropTypesIOS } from 'react-native';
 import styles from './style';
 import StatusBar from '../../../component/StatusBar';
 export default class Summery extends React.Component{
@@ -11,8 +10,12 @@ export default class Summery extends React.Component{
           totalQuestion:this.props.route.params.totalQuestion
         };
       }
-
-
+    share=async()=>{
+      await Share.share({
+        message:
+         `Correct Question ${this.state.correctCount} and Wrong Question ${this.state.totalQuestion-this.state.correctCount}`
+      });
+    }
     render(){
      const data=(this.state.correctCount*100)/this.state.totalQuestion
         return(
@@ -39,23 +42,28 @@ export default class Summery extends React.Component{
                  </View>
                 <View style={styles.button}>
                 <View style={{width:'47%'}}>
-                <CustomButton
-                title='Share Result'
-                textStyle={{fontSize:15}}
-                />  
+                 <TouchableOpacity
+                  onPress={()=>this.share()}
+                  style={[styles.main,{flexDirection:'row'}]}>
+                  <Image
+                   style={{width:14,height:14}}
+                   source={(require('../../../assets/Images/Vector.png'))}
+                  />
+                  <Text style={[styles.take,{marginLeft:4}]}>Share Result</Text>
+                </TouchableOpacity>
                 </View>
                 <View style={{width:'47%'}}>
-                 <CustomButton
-                 title='Take New Quiz'
-                 onPress={()=>this.props.navigation.navigate('Category')}
-                 textStyle={{fontSize:15}}
-                />  
+                <TouchableOpacity 
+                onPress={()=>this.props.navigation.navigate('Category')}
+                style={styles.main}>
+                  <Text style={styles.take}>Take New Quiz</Text>
+                </TouchableOpacity>
                 </View>
                 </View>
                 <TouchableOpacity
                 onPress={()=>this.props.navigation.navigate('Home')}
                 style={styles.x}>
-                <Text style={{color:'white',fontSize:30}}>x</Text>
+                <Text style={styles.text1}>x</Text>
                 </TouchableOpacity>
              </View>
              </ScrollView>

@@ -7,6 +7,7 @@ const CustomButton1 = (props) => {
       style={[styles.button, props.style]}
       onPress={props.onPress}
     >
+      {/* <Image style={{width:12,height:14}} source={props.source}/> */}
       <Text style={[styles.buttonText, props.textStyle]}>{props.title}</Text>
     </TouchableOpacity>
   );
@@ -18,7 +19,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
     justifyContent: "center",
     alignItems: "center",
-    borderRadius:8
+    borderRadius:8,
   },
   buttonText: {
     alignSelf: "center",

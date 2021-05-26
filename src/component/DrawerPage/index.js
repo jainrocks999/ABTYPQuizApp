@@ -28,8 +28,8 @@ export default function DrawerContent(props) {
     }, []);
 
     const initial = async () => {
-        let Email = await AsyncStorage.getItem('Email');
-        let Name = await AsyncStorage.getItem('Name');
+        let Email = await AsyncStorage.getItem(Storage.email);
+        let Name = await AsyncStorage.getItem(Storage.name);
         let mobileN=await AsyncStorage.getItem(Storage.mobile)
         setEmail(Email);
         setName(Name);
@@ -82,7 +82,7 @@ export default function DrawerContent(props) {
                     </View>:
                     <View style={styles.profile}>
                         <Title style={styles.title}>{Name}</Title>
-                        <Caption style={styles.caption}>{Email}</Caption>
+                        <Caption style={styles.caption}>{mobile}</Caption>
                     </View>}
                 </View>
                 <TouchableOpacity

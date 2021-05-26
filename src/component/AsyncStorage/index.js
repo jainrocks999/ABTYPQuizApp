@@ -1,5 +1,6 @@
 export default {
     userid:'userid',
     email:'email',
-    mobile:'mobile'
+    mobile:'mobile',
+    name:'name'
 }

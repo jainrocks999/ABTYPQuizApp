@@ -35,7 +35,7 @@ export default StyleSheet.create({
         width:'100%',
         marginTop:27,
         flexDirection:'row',
-        justifyContent:'space-between'
+        justifyContent:'space-between',
     },
     quiz:{
         fontSize:20,
@@ -102,6 +102,23 @@ export default StyleSheet.create({
         backgroundColor:'#b0adac',
         justifyContent:'center',
         alignItems:'center'
-        }
+    },
+    main: { 
+        width: "100%",
+        height:40,
+        backgroundColor: 'red',
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius:8
+    },
+    take:{
+        alignSelf: "center",
+        color: 'white',
+        fontFamily:'Krdev016',
+        fontSize: 14,
+    },
+    text1:{
+        color:'white',
+        fontSize:30,marginBottom:7}
    
 })

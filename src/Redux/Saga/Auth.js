@@ -10,6 +10,7 @@ function* doLogin(action) {
   const data = new FormData();
   data.append('mobile',action.mobile)
   const response = yield call(Api.fetchDataByPOST, action.url, data);
+  console.log('sadfhaasjfhsadkjfhsdjfhsadjkfhasdjkfhsadjkfhskdjfhksjdfhsdkjfhkjsdfhskjdhfksdhf',response);
   if (response.status==true) {
     yield put({
       type: 'User_Login_Success',
@@ -19,6 +20,8 @@ function* doLogin(action) {
       AsyncStorage.setItem(Storage.userid,response.user.userid)
       AsyncStorage.setItem(Storage.email,response.user.email)
       AsyncStorage.setItem(Storage.mobile,response.user.phone)
+      AsyncStorage.setItem(Storage.name,response.user.name)
+
      action.navigation.navigate('Otp');
   } else {
     Toast.show(response.msg);

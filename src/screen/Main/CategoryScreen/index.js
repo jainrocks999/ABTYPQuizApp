@@ -6,10 +6,25 @@ import StatusBar from '../../../component/StatusBar';
 import { useNavigation } from '@react-navigation/native';
 import Header from '../../../component/header';
 import { useSelector } from 'react-redux';
-
+import AsyncStorage from '@react-native-community/async-storage';
+import Storage from '../../../component/AsyncStorage';
 const HowTo=()=>{
   const navigation=useNavigation()
   const selector=useSelector(state=>state.CategoryList)
+
+  const checkIn=async(item)=>{
+  const mobile=await AsyncStorage.getItem(Storage.mobile)
+  console.log('your mobile number is',mobile)
+    if(mobile==null){
+      navigation.navigate('Login');
+    }
+    else{
+      navigation.navigate('Quiz', {
+        id: item.id,
+        roundname:item.roundname
+      });
+    }
+    }
     return(
          <View style={styles.container}>
            <Header
@@ -20,12 +35,7 @@ const HowTo=()=>{
          data={selector}
          renderItem={({item})=>(
              <TouchableOpacity 
-             onPress={() => {
-                navigation.navigate('Quiz', {
-                  id: item.id,
-                  roundname:item.roundname
-                });
-              }}
+             onPress={() => {checkIn(item)}}
              style={styles.card}>
                  <Text style={{color:'red'}}>{item.roundname}</Text>
                  <Text style={{color:'red'}}>{item.name}</Text>
